@@ -98,7 +98,7 @@ TODO
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
-- [ReactJS](ttp://reactjs.org) - Framework
+- [ReactJS](http://reactjs.org) - Framework
 - [TypeScript](https://www.typescriptlang.org) - Framework
 - [Axios](https://axios-http.com) - Network Handler
 - [CodeMirror](https://codemirror.net/) - In-app Code Editor
