@@ -33,13 +33,13 @@ export default function KeyValueEditor({
     <>
     <div className='flex mb-3'>
       <input
-        className="px-4 py-1.5 w-full border border-gray-300 rounded-md  hover:border-orange-500 focus:outline-orange-500"
+        className="px-4 py-1.5 w-full border border-gray-300 rounded-md  hover:border-sky-700 focus:outline-sky-700"
         placeholder='Key'
         name='keyItem'
         onChange={(e) => handleOnChange(e)}
       />
       <input
-        className="ml-3 px-4 py-1.5 w-full border border-gray-300 rounded-md hover:border-orange-500 focus:outline-orange-500"
+        className="ml-3 px-4 py-1.5 w-full border border-gray-300 rounded-md hover:border-sky-700 focus:outline-sky-700"
         placeholder='Value'
         name='valueItem'
         onChange={(e) => handleOnChange(e)}

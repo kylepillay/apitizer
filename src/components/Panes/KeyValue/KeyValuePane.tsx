@@ -49,7 +49,7 @@ export default function KeyValuePane({ paneValue, setPaneValue }: any) {
     <div className=''>
       {renderedList}
       <button 
-        className="px-6 py-1 rounded-md text-orange-600 border border-orange-400 hover:bg-orange-100"
+        className="px-6 py-1 rounded-md text-sky-800 border border-sky-600 hover:bg-sky-200"
         onClick={() => onKeyPairAdd()}>Add</button>
         </div>
     </>
