@@ -1,17 +1,11 @@
-<p align="center">
-  <a href="" rel="noopener">
- <img width=200px height=100px src="src/assets/logo.svg" alt="Project logo">
- </a>
-</p>
 
-<h3 align="center">APItizer</h3>
+# APItizer
+
+![APItizer](src/assets/logo.svg "APItizer")
 
 ---
 
-<p align="center">
 APItizer is a web application built using ReactJS and Tailwind CSS, designed to test and debug REST APIs by simulating HTTP requests and responses while supporting authentication and authorization.
-<br> 
-</p>
 
 ## 📝 Table of Contents
 
