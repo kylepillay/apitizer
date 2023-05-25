@@ -8,8 +8,8 @@ export default function KeyValuePane({ paneValue, setPaneValue }: any) {
       ...paneValue,
       {
         id: uuidv4(),
-        keyItem: '',
-        valueItem: '',
+        keyItem: paneValue.keyItem,
+        valueItem:paneValue.valueItem,
       },
     ]);
   };
@@ -46,11 +46,11 @@ export default function KeyValuePane({ paneValue, setPaneValue }: any) {
 
   return (
     <>
-    <div className=''>
+    <div>
       {renderedList}
       <button 
         className="px-6 py-1 rounded-md text-sky-800 border border-sky-600 hover:bg-sky-200"
-        onClick={() => onKeyPairAdd()}>Add</button>
+        onClick={onKeyPairAdd}>Add</button>
         </div>
     </>
   );

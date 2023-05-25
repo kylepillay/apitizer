@@ -4,8 +4,8 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import './Tab-Groups.css';
 
 import KeyValuePane from '../Panes/KeyValue/KeyValuePane';
-import JsonEditorPane from '../Panes/Json/JsonEditorPane';
-import { keyPairInitState } from '@components/Workspace/Request/RequestPanel';
+import { keyPairInitState } from '../../components/Workspace/Request/RequestPanel';
+import CodeEditor from '../../components/General/CodeEditor';
 
 export default function RequestTabGroup({
   queryParams,
@@ -40,7 +40,7 @@ export default function RequestTabGroup({
     {
       slug: 'body',
       title: 'Body',
-      panel: JsonEditorPane,
+      panel: CodeEditor,
       paneValue: body,
       setPaneValue: setBody,
     },
@@ -55,13 +55,16 @@ export default function RequestTabGroup({
             key={tab.slug}>
             {tab.title}
           </Tab>
-        ))}˝
+        ))}
       </TabList>
       {requestTabs.map((tab) => (
         <TabPanel className="react-tabs__tab-panel px-4 py-4 rounded-b-lg border border-t-0 border-gray-300" key={tab.slug}>
           <tab.panel
-            paneValue={tab.paneValue}
-            setPaneValue={tab.setPaneValue}
+            extensions={[]}
+            value={tab.paneValue}
+            onChange={tab.setPaneValue}
+            paneValue={headers}
+            setPaneValue={setHeaders}
           />
         </TabPanel>
       ))}

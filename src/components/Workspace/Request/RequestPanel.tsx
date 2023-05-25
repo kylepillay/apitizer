@@ -18,8 +18,8 @@ export default function Request({ setResponse, setLoading, loading }: { setRespo
     'https://jsonplaceholder.typicode.com/todos/1'
   );
   const [reqMethod, setReqMethod] = useState('GET');
-  const [queryParams, setQueryParams] = useState(keyPairInitState);
-  const [headers, setHeaders] = useState(keyPairInitState);
+  const [queryParams, setQueryParams] = useState<typeof keyPairInitState>(keyPairInitState);
+  const [headers, setHeaders] = useState<typeof keyPairInitState>(keyPairInitState);
   const [body, setBody] = useState('{\n\t\n}');
 
   const handleOnInputSend = async (e: any) => {
@@ -35,6 +35,8 @@ export default function Request({ setResponse, setLoading, loading }: { setRespo
     let data;
     try {
       data = JSON.parse(requestBody);
+      console.log("Hello")
+      console.log(data)
     } catch (e) {
       alert('Something is wrong with the JSON data.');
     }

@@ -2,8 +2,8 @@ import React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { ThreeDots } from 'react-loader-spinner';
 
-import JsonEditorPane from '../Panes/Json/JsonEditorPane';
 import ResponseHeaderPane from '../Panes/ResponseHeader/ResponseHeaderPane';
+import CodeEditor from '../../components/General/CodeEditor';
 
 export default function ResponseTabGroup({ doc, setDoc, response, loading }) {
   const responseTabs = [
@@ -29,10 +29,11 @@ export default function ResponseTabGroup({ doc, setDoc, response, loading }) {
         </TabList>
 
         <TabPanel>
-          {loading ? <ThreeDots /> : <JsonEditorPane
+          {loading ? <ThreeDots /> : <CodeEditor
             paneValue={doc}
             setPaneValue={setDoc}
-            isEditable={false}
+            value={doc}
+            onChange={setDoc}
           />}
         </TabPanel>
         <TabPanel >

@@ -2,9 +2,15 @@
     "cSpell.words": [
         "apiron",
         "APITIZER",
+        "closebrackets",
         "codemirror",
+        "htmlmixed",
         "keymap",
+        "matchbrackets",
+        "matchtags",
         "predeploy",
+        "searchcursor",
+        "simplescrollbars",
         "tailwindcss"
     ]
 }
