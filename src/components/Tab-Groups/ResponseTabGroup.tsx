@@ -8,8 +8,8 @@ import ResponseHeaderPane from '../Panes/ResponseHeader/ResponseHeaderPane';
 export default function ResponseTabGroup({ doc, setDoc, response, loading }) {
   const responseTabs = [
     {
-      slug:'response-body',
-      title:'Response Body'
+      slug: 'response-body',
+      title: 'Response Body'
     },
     {
       slug: 'response-header',
@@ -17,40 +17,27 @@ export default function ResponseTabGroup({ doc, setDoc, response, loading }) {
     }
   ]
   return (
-    <>
-      <Tabs forceRenderTabPanel selectedTabClassName="border-b-2 text-sky-800">
+    <Tabs forceRenderTabPanel selectedTabClassName="border-b-2 text-sky-800">
         <TabList className="flex mt-5 border border-gray-300 rounded-t-lg">
           {responseTabs.map((tab) => (
-            <Tab 
-              className="mr-3 py-2 px-4 border-sky-600 focus:outline-none hover:text-sky-700 cursor-pointer" 
+            <Tab
+              className="mr-3 py-2 px-4 border-sky-600 focus:outline-none hover:text-sky-700 cursor-pointer"
               key={tab.slug}>
-                {tab.title}
+              {tab.title}
             </Tab>
           ))}
         </TabList>
-       
-        <div className="px-4 py-4 rounded-b-lg border border-t-0 border-gray-300">
-        {loading ? ( 
-        <ThreeDots 
-          height="30"
-          width="30"
-          color="gray"
-          visible={true} 
-        />
-          ) : ( <>
+
         <TabPanel>
-          <JsonEditorPane
-              paneValue={doc}
-              setPaneValue={setDoc}
-              isEditable={false}
-            />
+          {loading ? <ThreeDots /> : <JsonEditorPane
+            paneValue={doc}
+            setPaneValue={setDoc}
+            isEditable={false}
+          />}
         </TabPanel>
         <TabPanel >
-          <ResponseHeaderPane response={response} />
+          {loading ? null : <ResponseHeaderPane response={response} />}
         </TabPanel>
-        </> )}
-        </div>
       </Tabs>
-    </>
   );
 }

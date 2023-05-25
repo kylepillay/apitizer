@@ -12,7 +12,7 @@ const updateEndTime = (response) => {
   return response;
 };
 
-axios.interceptors.request.use((request) => {
+axios.interceptors.request.use((request: any) => {
   request.customData = request.customData || {};
   request.customData.startTime = new Date().getTime();
   return request;
@@ -22,7 +22,7 @@ axios.interceptors.response.use(updateEndTime, (e) => {
   return Promise.reject(updateEndTime(e.response));
 });
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root') as Element);
 root.render(
   <React.StrictMode>
     <App />

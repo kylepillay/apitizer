@@ -51,13 +51,12 @@ export default function RequestTabGroup({
       <TabList className="flex mt-5 border border-gray-300 rounded-t-lg">
         {requestTabs.map((tab) => (
           <Tab className="mr-3 py-2 px-4 border-sky-600 focus:outline-none 
-                          hover:text-sky-700 cursor-pointer" 
-              key={tab.slug}>
-                {tab.title}
-                </Tab>
-        ))}
+                          hover:text-sky-700 cursor-pointer"
+            key={tab.slug}>
+            {tab.title}
+          </Tab>
+        ))}˝
       </TabList>
-
       {requestTabs.map((tab) => (
         <TabPanel className="react-tabs__tab-panel px-4 py-4 rounded-b-lg border border-t-0 border-gray-300" key={tab.slug}>
           <tab.panel
