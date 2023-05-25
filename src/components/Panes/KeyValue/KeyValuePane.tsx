@@ -2,38 +2,38 @@ import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import KeyValueEditor from './KeyValueEditor';
 
-export default function KeyValuePane({ paneValue, setPaneValue }: any) {
+export default function KeyValuePane({ value, onChange }: any) {
   const onKeyPairAdd = () => {
-    setPaneValue((paneValue: any) => [
-      ...paneValue,
+    onChange((value: any) => [
+      ...value,
       {
         id: uuidv4(),
-        keyItem: paneValue.keyItem,
-        valueItem:paneValue.valueItem,
+        keyItem: value.keyItem,
+        valueItem:value.valueItem,
       },
     ]);
   };
 
   const onKeyPairRemove = (keyPair: any) => {
-    let newKeyValues = [...paneValue];
+    let newKeyValues = [...value];
     newKeyValues = newKeyValues.filter((x) => x.id !== keyPair.id);
-    setPaneValue(newKeyValues);
+    onChange(newKeyValues);
   };
 
   const onKeyPairUpdate = (keyPair: any) => {
-    const elementIndex = paneValue.findIndex(
+    const elementIndex = value.findIndex(
       (element: any) => element.id === keyPair.id
     );
-    let newKeyValues = [...paneValue];
+    let newKeyValues = [...value];
     newKeyValues[elementIndex] = {
       ...newKeyValues[elementIndex],
       keyItem: keyPair.keyItem,
       valueItem: keyPair.valueItem,
     };
-    setPaneValue(newKeyValues);
+    onChange(newKeyValues);
   };
 
-  const renderedList = paneValue.map((keyPair: any) => {
+  const renderedList = value.map((keyPair: any) => {
     return (
       <KeyValueEditor
         key={keyPair.id}

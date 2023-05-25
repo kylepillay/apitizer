@@ -1,15 +1,8 @@
-import React from 'react';
-import { useCodeMirror } from 'use-codemirror'
+import { RefObject } from "react";
+import { useCodeEditor } from "../../../hooks/useCodeEditor";
 
-export default function EditorPanel({ className, style, ...options }: any) {
-  
-  const codeMirror = useCodeMirror(options)
- 
-  return (
-    <div className={className} style={style}>
-      <pre ref={codeMirror.ref} className={codeMirror.config.theme}>
-        {options.value}
-      </pre>
-    </div>
-  )
+export default function JsonEditorPane({ value, onChange, extensions = [] }: { value: any, onChange: any, extensions?: [] }) {
+  const ref = useCodeEditor({ value, onChange, extensions });
+
+  return <div ref={ref as RefObject<HTMLDivElement>} />;
 }

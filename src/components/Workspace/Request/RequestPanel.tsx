@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { convertKeyValueToObject } from '../../../utils/helpers';
 import UrlEditor from '../../Panes/RequestUrl/UrlEditor';
 import RequestTabGroup from '../../Tab-Groups/RequestTabGroup';
@@ -32,11 +32,9 @@ export default function Request({ setResponse, setLoading, loading }: { setRespo
     console.log('query params ', queryParams);
     console.log('body ', requestBody);
 
-    let data;
+    let data: any;
     try {
       data = JSON.parse(requestBody);
-      console.log("Hello")
-      console.log(data)
     } catch (e) {
       alert('Something is wrong with the JSON data.');
     }
@@ -48,7 +46,7 @@ export default function Request({ setResponse, setLoading, loading }: { setRespo
         params: convertKeyValueToObject(queryParams),
         headers: convertKeyValueToObject(headers),
         data,
-      });
+      } as AxiosRequestConfig);
 
       setResponse(response);
     } catch (e) {

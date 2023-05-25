@@ -5,7 +5,7 @@ import './Tab-Groups.css';
 
 import KeyValuePane from '../Panes/KeyValue/KeyValuePane';
 import { keyPairInitState } from '../../components/Workspace/Request/RequestPanel';
-import CodeEditor from '../../components/General/CodeEditor';
+import JsonEditorPane from '@components/Panes/Json/JsonEditorPane';
 
 export default function RequestTabGroup({
   queryParams,
@@ -40,7 +40,7 @@ export default function RequestTabGroup({
     {
       slug: 'body',
       title: 'Body',
-      panel: CodeEditor,
+      panel: JsonEditorPane,
       paneValue: body,
       setPaneValue: setBody,
     },
@@ -63,8 +63,6 @@ export default function RequestTabGroup({
             extensions={[]}
             value={tab.paneValue}
             onChange={tab.setPaneValue}
-            paneValue={headers}
-            setPaneValue={setHeaders}
           />
         </TabPanel>
       ))}
