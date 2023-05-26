@@ -1,15 +1,19 @@
 import React from 'react';
 import Navbar from './Navbar/Navbar';
+import Sidebar from './Sidebar';
 
 export default function Layout({ children }: any) {
   return (
     <>
-      <Navbar />
-      <main>
-        <div className='flex max-w-6xl min-h-screen pt-[86px] mx-auto px-5 bg-white '>
-          <div className='mx-auto w-full py-6'>{children}</div>
+      <div className="flex h-screen">
+        <Sidebar />
+        <div className="flex flex-col flex-1">
+          <Navbar />
+          <main className="p-4">
+            {children}
+          </main>
         </div>
-      </main>
+      </div>
     </>
   );
-}
+} 

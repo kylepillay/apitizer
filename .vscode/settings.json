@@ -1,16 +1,31 @@
 {
-    "cSpell.words": [
-        "apiron",
-        "APITIZER",
-        "closebrackets",
-        "codemirror",
-        "htmlmixed",
-        "keymap",
-        "matchbrackets",
-        "matchtags",
-        "predeploy",
-        "searchcursor",
-        "simplescrollbars",
-        "tailwindcss"
-    ]
+  "cSpell.words": [
+    "apiron",
+    "APITIZER",
+    "camelcase",
+    "closebrackets",
+    "codemirror",
+    "craco",
+    "fontawesome",
+    "fortawesome",
+    "htmlmixed",
+    "keymap",
+    "matchbrackets",
+    "matchtags",
+    "pinst",
+    "postpack",
+    "predeploy",
+    "searchcursor",
+    "simplescrollbars",
+    "tailwindcss",
+    "uuidv"
+  ],
+  "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+  "editor.formatOnPaste": false,
+  "editor.formatOnType": false,
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "files.autoSave": "onFocusChange",
+  "vs-code-prettier-eslint.prettierLast": false,
+  "eslint.packageManager": "yarn"
 }

@@ -9,7 +9,7 @@ export default function KeyValuePane({ value, onChange }: any) {
       {
         id: uuidv4(),
         keyItem: value.keyItem,
-        valueItem:value.valueItem,
+        valueItem: value.valueItem,
       },
     ]);
   };
@@ -24,7 +24,7 @@ export default function KeyValuePane({ value, onChange }: any) {
     const elementIndex = value.findIndex(
       (element: any) => element.id === keyPair.id
     );
-    let newKeyValues = [...value];
+    const newKeyValues = [...value];
     newKeyValues[elementIndex] = {
       ...newKeyValues[elementIndex],
       keyItem: keyPair.keyItem,
@@ -46,12 +46,12 @@ export default function KeyValuePane({ value, onChange }: any) {
 
   return (
     <>
-    <div>
-      {renderedList}
-      <button 
-        className="px-6 py-1 rounded-md text-sky-800 border border-sky-600 hover:bg-sky-200"
-        onClick={onKeyPairAdd}>Add</button>
-        </div>
+      <div>
+        {renderedList}
+        <button
+          className="px-6 py-1 rounded-md text-sky-800 border border-sky-600 hover:bg-sky-200"
+          onClick={onKeyPairAdd}>Add</button>
+      </div>
     </>
   );
 }

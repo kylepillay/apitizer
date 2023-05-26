@@ -1,4 +1,7 @@
-const path = require('path');
+/* eslint-disable no-undef */
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const path = require('path')
+
 module.exports = {
   webpack: {
     alias: {
@@ -10,4 +13,4 @@ module.exports = {
       '@utils': path.resolve(__dirname, 'src/utils'),
     },
   },
-};
+}

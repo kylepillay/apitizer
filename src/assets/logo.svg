@@ -1,56 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 419.76 202.03">
-  <defs>
-    <linearGradient id="linear-gradient" x1="-25.86" y1="198.98" x2="153.98" y2="79.66" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#8e54e9"/>
-      <stop offset=".59" stop-color="#6567e7"/>
-      <stop offset="1" stop-color="#4776e6"/>
-    </linearGradient>
-    <linearGradient id="linear-gradient-2" x1="-25.86" y1="198.98" x2="153.95" y2="79.67" xlink:href="#linear-gradient"/>
-    <linearGradient id="New_Gradient_Swatch_1" data-name="New Gradient Swatch 1" x1="15.64" y1="173.34" x2="32.99" y2="161.84" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#4776e6"/>
-      <stop offset=".48" stop-color="#479ee6"/>
-      <stop offset="1" stop-color="#47cfe6"/>
-    </linearGradient>
-    <linearGradient id="New_Gradient_Swatch_1-2" data-name="New Gradient Swatch 1" x1="161.28" y1="119.89" x2="71.78" y2="23.01" xlink:href="#New_Gradient_Swatch_1"/>
-    <linearGradient id="New_Gradient_Swatch_1-3" data-name="New Gradient Swatch 1" x1="70.37" y1="2.82" x2="162.42" y2="90.33" gradientTransform="translate(179.26 42.26) rotate(-180)" xlink:href="#New_Gradient_Swatch_1"/>
-    <linearGradient id="New_Gradient_Swatch_1-4" data-name="New Gradient Swatch 1" x1="109.44" y1="-.54" x2="79.44" y2="26.65" xlink:href="#New_Gradient_Swatch_1"/>
-    <linearGradient id="New_Gradient_Swatch_1-5" data-name="New Gradient Swatch 1" x1="276.57" y1="194.43" x2="246.56" y2="221.61" gradientTransform="translate(360.65 359.94) rotate(-90) scale(1 -1)" xlink:href="#New_Gradient_Swatch_1"/>
-    <linearGradient id="linear-gradient-3" x1="54.76" y1="115.55" x2="110.98" y2="115.55" xlink:href="#linear-gradient"/>
-    <linearGradient id="New_Gradient_Swatch_1-6" data-name="New Gradient Swatch 1" x1="83.18" y1="-10.65" x2="175.23" y2="76.85" xlink:href="#New_Gradient_Swatch_1"/>
-    <linearGradient id="New_Gradient_Swatch_1-7" data-name="New Gradient Swatch 1" x1="171.22" y1="110.7" x2="81.73" y2="13.82" xlink:href="#New_Gradient_Swatch_1"/>
-    <linearGradient id="New_Gradient_Swatch_1-8" data-name="New Gradient Swatch 1" x1="78.71" y1="43.62" x2="143.77" y2="115.21" xlink:href="#New_Gradient_Swatch_1"/>
-    <linearGradient id="linear-gradient-4" x1="0" y1="110.51" x2="164.62" y2="110.51" xlink:href="#linear-gradient"/>
-    <linearGradient id="linear-gradient-5" x1="82.9" y1="61.26" x2="-16.82" y2="102.18" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#8e54e9" stop-opacity="0"/>
-      <stop offset=".2" stop-color="#815ae8" stop-opacity=".18"/>
-      <stop offset=".65" stop-color="#6169e7" stop-opacity=".63"/>
-      <stop offset="1" stop-color="#4776e6"/>
-    </linearGradient>
-    <linearGradient id="linear-gradient-6" x1="173.58" y1="155.51" x2="46.02" y2="161.48" xlink:href="#linear-gradient-5"/>
-  </defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 419.76 202.03">
   <g isolation="isolate">
     <g id="Layer_2" data-name="Layer 2">
       <g id="Objects">
         <g>
-          <path d="m41.66,177.58l-18.54,4.97-19.63,5.25,5.27-19.63,5.05-18.92c7.04,11.41,16.57,21.1,27.85,28.32Z" fill="url(#linear-gradient)"/>
-          <path d="m41.66,177.58l-13.1,3.5-5.43,1.46-19.64,5.25,5.27-19.62,3.82-14.29,1.24-4.63c2.13,3.46,4.48,6.76,7.06,9.87,5.9,7.18,12.92,13.42,20.78,18.46Z" fill="url(#linear-gradient-2)"/>
-          <path d="m41.66,177.58l-13.1,3.5c-12.15-12.92-15.98-27.2-15.98-27.2,0,0,3.46,2.19,8.3,5.24,5.9,7.18,12.92,13.42,20.78,18.46Z" fill="url(#New_Gradient_Swatch_1)" mix-blend-mode="multiply" opacity=".5"/>
-          <polyline points="163.99 96.42 127.71 96.42 127.71 109.95 163.99 109.95" fill="url(#New_Gradient_Swatch_1-2)"/>
-          <rect x="82.86" y="2.07" width="13.53" height="38.11" transform="translate(179.26 42.26) rotate(180)" fill="url(#New_Gradient_Swatch_1-3)"/>
-          <path d="m82.86,15.09s9.53.48,13.53,7.79v-13.57l-13.53,2.63v3.15Z" fill="url(#New_Gradient_Swatch_1-4)" mix-blend-mode="multiply" opacity=".5"/>
-          <path d="m150.59,109.95s-.48-9.53-7.79-13.53h13.57l-2.63,13.53h-3.15Z" fill="url(#New_Gradient_Swatch_1-5)" mix-blend-mode="multiply" opacity=".5"/>
-          <path d="m82.86,81.84c-15.52,0-28.1,12.59-28.1,28.1s28.1,39.31,28.1,39.31c0,0,28.12-23.78,28.12-39.31s-12.59-28.1-28.12-28.1Zm0,41.12c-7.19,0-13.02-5.82-13.02-13.02s5.83-13.01,13.02-13.01,13.02,5.82,13.02,13.01-5.83,13.02-13.02,13.02Z" fill="url(#linear-gradient-3)"/>
-          <path d="m177.73,109.95c0-52.31-42.55-94.86-94.86-94.86V0c60.63,0,109.95,49.33,109.95,109.95" fill="url(#New_Gradient_Swatch_1-6)"/>
-          <path d="m165.72,109.94c0-45.69-37.17-82.85-82.86-82.85v15.09c37.37,0,67.77,30.4,67.77,67.75h15.09" fill="url(#New_Gradient_Swatch_1-7)"/>
-          <path d="m138.62,109.95h-15.09c0-22.42-18.24-40.66-40.66-40.66v-15.09c30.74,0,55.75,25.01,55.75,55.76Z" fill="url(#New_Gradient_Swatch_1-8)"/>
-          <path d="m164.62,123.49c-2.73,16.77-10.57,32.24-22.69,44.59-15.7,15.95-36.68,24.75-59.07,24.75-5.74,0-11.37-.57-16.84-1.71-15.94-3.26-30.53-11.17-42.22-23.05C8.45,152.47,0,131.83,0,109.95s8.92-42.73,23.41-57.64c11.7-12.07,27.05-20.6,44.22-23.82.57-.09,1.13-.2,1.71-.29v15.33c-9.55,1.93-18.37,5.9-26.01,11.4-17.09,12.33-28.24,32.41-28.24,55.01,0,6.49.91,12.84,2.67,18.93,3.08,10.67,8.8,20.48,16.8,28.62,12.83,13.04,29.99,20.24,48.3,20.24s35.47-7.2,48.31-20.24c7.5-7.64,12.98-16.74,16.18-26.64.78-2.4,1.43-4.86,1.93-7.37h15.33" fill="url(#linear-gradient-4)"/>
-          <path d="m67.63,28.49c-17.18,3.21-32.53,11.74-44.22,23.82-2.46,5.04-4.51,10.32-6.16,15.82-5.98,20.12-5.75,41.13.51,60.75-1.77-6.08-2.67-12.44-2.67-18.93,0-22.61,11.15-42.68,28.24-55.01,7.64-5.49,16.45-9.46,26.01-11.4v-15.33c-.57.09-1.13.2-1.71.29Z" fill="url(#linear-gradient-5)" mix-blend-mode="multiply"/>
-          <path d="m164.62,123.49c-2.73,16.77-10.57,32.24-22.69,44.59-15.7,15.95-36.68,24.75-59.07,24.75-5.74,0-11.37-.57-16.84-1.71h.33c22.87,0,44.25-9,60.28-25.27,9.8-9.96,16.84-21.95,20.72-35,.78-2.4,1.43-4.86,1.93-7.37h15.33" fill="url(#linear-gradient-6)" mix-blend-mode="multiply"/>
+          <path d="m41.66,177.58l-18.54,4.97-19.63,5.25,5.27-19.63,5.05-18.92c7.04,11.41,16.57,21.1,27.85,28.32Z" fill="#3a6ed4"/>
+          <path d="m41.66,177.58l-13.1,3.5-5.43,1.46-19.64,5.25,5.27-19.62,3.82-14.29,1.24-4.63c2.13,3.46,4.48,6.76,7.06,9.87,5.9,7.18,12.92,13.42,20.78,18.46Z" fill="#3a6ed4"/>
+          <path d="m41.66,177.58l-13.1,3.5c-12.15-12.92-15.98-27.2-15.98-27.2,0,0,3.46,2.19,8.3,5.24,5.9,7.18,12.92,13.42,20.78,18.46Z" fill="#3a6ed4" mix-blend-mode="multiply" opacity=".5"/>
+          <polyline points="163.99 96.42 127.71 96.42 127.71 109.95 163.99 109.95" fill="#3a6ed4"/>
+          <rect x="82.86" y="2.07" width="13.53" height="38.11" transform="translate(179.26 42.26) rotate(180)" fill="#3a6ed4"/>
+          <path d="m82.86,15.09s9.53.48,13.53,7.79v-13.57l-13.53,2.63v3.15Z" fill="#3a6ed4" mix-blend-mode="multiply" opacity=".5"/>
+          <path d="m150.59,109.95s-.48-9.53-7.79-13.53h13.57l-2.63,13.53h-3.15Z" fill="#3a6ed4" mix-blend-mode="multiply" opacity=".5"/>
+          <path d="m82.86,81.84c-15.52,0-28.1,12.59-28.1,28.1s28.1,39.31,28.1,39.31c0,0,28.12-23.78,28.12-39.31s-12.59-28.1-28.12-28.1Zm0,41.12c-7.19,0-13.02-5.82-13.02-13.02s5.83-13.01,13.02-13.01,13.02,5.82,13.02,13.01-5.83,13.02-13.02,13.02Z" fill="#3a6ed4"/>
+          <path d="m177.73,109.95c0-52.31-42.55-94.86-94.86-94.86V0c60.63,0,109.95,49.33,109.95,109.95" fill="#3a6ed4"/>
+          <path d="m165.72,109.94c0-45.69-37.17-82.85-82.86-82.85v15.09c37.37,0,67.77,30.4,67.77,67.75h15.09" fill="#3a6ed4"/>
+          <path d="m138.62,109.95h-15.09c0-22.42-18.24-40.66-40.66-40.66v-15.09c30.74,0,55.75,25.01,55.75,55.76Z" fill="#3a6ed4"/>
+          <path d="m164.62,123.49c-2.73,16.77-10.57,32.24-22.69,44.59-15.7,15.95-36.68,24.75-59.07,24.75-5.74,0-11.37-.57-16.84-1.71-15.94-3.26-30.53-11.17-42.22-23.05C8.45,152.47,0,131.83,0,109.95s8.92-42.73,23.41-57.64c11.7-12.07,27.05-20.6,44.22-23.82.57-.09,1.13-.2,1.71-.29v15.33c-9.55,1.93-18.37,5.9-26.01,11.4-17.09,12.33-28.24,32.41-28.24,55.01,0,6.49.91,12.84,2.67,18.93,3.08,10.67,8.8,20.48,16.8,28.62,12.83,13.04,29.99,20.24,48.3,20.24s35.47-7.2,48.31-20.24c7.5-7.64,12.98-16.74,16.18-26.64.78-2.4,1.43-4.86,1.93-7.37h15.33" fill="#3a6ed4"/>
+          <path d="m67.63,28.49c-17.18,3.21-32.53,11.74-44.22,23.82-2.46,5.04-4.51,10.32-6.16,15.82-5.98,20.12-5.75,41.13.51,60.75-1.77-6.08-2.67-12.44-2.67-18.93,0-22.61,11.15-42.68,28.24-55.01,7.64-5.49,16.45-9.46,26.01-11.4v-15.33c-.57.09-1.13.2-1.71.29Z" fill="#3a6ed4" mix-blend-mode="multiply"/>
+          <path d="m164.62,123.49c-2.73,16.77-10.57,32.24-22.69,44.59-15.7,15.95-36.68,24.75-59.07,24.75-5.74,0-11.37-.57-16.84-1.71h.33c22.87,0,44.25-9,60.28-25.27,9.8-9.96,16.84-21.95,20.72-35,.78-2.4,1.43-4.86,1.93-7.37h15.33" fill="#3a6ed4" mix-blend-mode="multiply"/>
         </g>
       </g>
       <g id="Texts">
-        <text transform="translate(162.31 166)" font-family="Poppins-Bold, Poppins" font-size="59.45" font-weight="700"><tspan x="0" y="0" fill="#8e54e9">API</tspan><tspan x="98.44" y="0" fill="#4776e6">TIZER</tspan></text>
+        <text transform="translate(162.31 166)" fill="#3a6ed4" font-family="Poppins-Bold, Poppins" font-size="59.45" font-weight="700"><tspan x="0" y="0">APITIZER</tspan></text>
       </g>
     </g>
   </g>

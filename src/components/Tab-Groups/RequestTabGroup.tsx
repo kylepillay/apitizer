@@ -15,12 +15,12 @@ export default function RequestTabGroup({
   body,
   setBody,
 }: {
-  queryParams: {},
+  queryParams: object,
   setQueryParams: React.Dispatch<React.SetStateAction<typeof keyPairInitState>>,
-  headers: {},
+  headers: object,
   setHeaders: React.Dispatch<React.SetStateAction<typeof keyPairInitState>>,
-  body: {},
-  setBody: Object
+  body: string,
+  setBody: object
 }) {
   const requestTabs = [
     {

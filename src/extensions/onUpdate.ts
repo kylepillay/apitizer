@@ -1,4 +1,4 @@
-import { EditorView, ViewUpdate } from "@codemirror/view";
+import { EditorView, ViewUpdate } from '@codemirror/view';
 type OnChange = (value: string, viewUpdate: ViewUpdate) => void;
 
 export function onUpdate(onChange: OnChange) {
