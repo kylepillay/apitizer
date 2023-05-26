@@ -1,8 +1,16 @@
-import { RefObject } from 'react';
-import { useCodeEditor } from '../../../hooks/useCodeEditor';
+import { RefObject } from 'react'
+import { useCodeEditor } from '../../../hooks/useCodeEditor'
 
-export default function CodeEditor({ value, onChange, extensions = [] }: { value: any, onChange: any, extensions?: [], paneValue: any, setPaneValue: any }) {
-  const ref = useCodeEditor({ value, onChange, extensions });
+export default function CodeEditor({
+  value,
+  onChange,
+  extensions = [],
+}: {
+  value: string
+  onChange: React.Dispatch<React.SetStateAction<string>>
+  extensions?: []
+}) {
+  const ref = useCodeEditor({ value, onChange, extensions })
 
-  return <div ref={ref as RefObject<HTMLDivElement>} />;
+  return <div ref={ref as RefObject<HTMLDivElement>} />
 }

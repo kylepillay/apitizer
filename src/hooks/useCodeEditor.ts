@@ -1,13 +1,12 @@
-import { useEffect } from 'react';
-import { onUpdate } from '../extensions/onUpdate';
-import useCodeMirror from '../hooks/useCodeMirror';
+import { useEffect } from 'react'
+import { onUpdate } from '../extensions/onUpdate'
+import useCodeMirror from '../hooks/useCodeMirror'
 
 export function useCodeEditor({ value, onChange, extensions }) {
-    
-  const { ref, view } = useCodeMirror([onUpdate(onChange), ...extensions]);
+  const { ref, view } = useCodeMirror([onUpdate(onChange), ...extensions])
   useEffect(() => {
     if (view) {
-      const editorValue = view.state.doc.toString();
+      const editorValue = view.state.doc.toString()
 
       if (value !== editorValue) {
         view.dispatch({
@@ -15,11 +14,11 @@ export function useCodeEditor({ value, onChange, extensions }) {
             from: 0,
             to: editorValue.length,
             insert: value || '',
-          }
-        });
+          },
+        })
       }
     }
-  }, [value, view]);
+  }, [value, view])
 
-  return ref;
+  return ref
 }

@@ -1,11 +1,11 @@
-import React from 'react';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import React from 'react'
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 
-import './Tab-Groups.css';
+import './Tab-Groups.css'
 
-import KeyValuePane from '../Panes/KeyValue/KeyValuePane';
-import { keyPairInitState } from '../../components/Workspace/Request/RequestPanel';
-import JsonEditorPane from '@components/Panes/Json/JsonEditorPane';
+import KeyValuePane from '../Panes/KeyValue/KeyValuePane'
+import { keyPairInitState } from '../../components/Workspace/Request/RequestPanel'
+import JsonEditorPane from '@components/Panes/Json/JsonEditorPane'
 
 export default function RequestTabGroup({
   queryParams,
@@ -15,11 +15,11 @@ export default function RequestTabGroup({
   body,
   setBody,
 }: {
-  queryParams: object,
-  setQueryParams: React.Dispatch<React.SetStateAction<typeof keyPairInitState>>,
-  headers: object,
-  setHeaders: React.Dispatch<React.SetStateAction<typeof keyPairInitState>>,
-  body: string,
+  queryParams: object
+  setQueryParams: React.Dispatch<React.SetStateAction<typeof keyPairInitState>>
+  headers: object
+  setHeaders: React.Dispatch<React.SetStateAction<typeof keyPairInitState>>
+  body: string
   setBody: object
 }) {
   const requestTabs = [
@@ -44,28 +44,29 @@ export default function RequestTabGroup({
       paneValue: body,
       setPaneValue: setBody,
     },
-  ];
+  ]
 
   return (
-    <Tabs forceRenderTabPanel selectedTabClassName="border-b-2 text-sky-800">
-      <TabList className="flex mt-5 border border-gray-300 rounded-t-lg">
+    <Tabs forceRenderTabPanel selectedTabClassName='border-b-2 text-sky-800'>
+      <TabList className='mt-5 flex rounded-t-lg border border-gray-300'>
         {requestTabs.map((tab) => (
-          <Tab className="mr-3 py-2 px-4 border-sky-600 focus:outline-none 
-                          hover:text-sky-700 cursor-pointer"
-            key={tab.slug}>
+          <Tab
+            className='mr-3 cursor-pointer border-sky-600 px-4 py-2 
+                          hover:text-sky-700 focus:outline-none'
+            key={tab.slug}
+          >
             {tab.title}
           </Tab>
         ))}
       </TabList>
       {requestTabs.map((tab) => (
-        <TabPanel className="react-tabs__tab-panel px-4 py-4 rounded-b-lg border border-t-0 border-gray-300" key={tab.slug}>
-          <tab.panel
-            extensions={[]}
-            value={tab.paneValue}
-            onChange={tab.setPaneValue}
-          />
+        <TabPanel
+          className='react-tabs__tab-panel rounded-b-lg border border-t-0 border-gray-300 px-4 py-4'
+          key={tab.slug}
+        >
+          <tab.panel extensions={[]} value={tab.paneValue} onChange={tab.setPaneValue} />
         </TabPanel>
       ))}
     </Tabs>
-  );
+  )
 }

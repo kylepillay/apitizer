@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import axios, { AxiosRequestConfig } from 'axios';
-import { convertKeyValueToObject } from '../../../utils/helpers';
-import UrlEditor from '../../Panes/RequestUrl/UrlEditor';
-import RequestTabGroup from '../../Tab-Groups/RequestTabGroup';
+import React, { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
+import axios, { AxiosRequestConfig } from 'axios'
+import { convertKeyValueToObject } from '../../../utils/helpers'
+import UrlEditor from '../../Panes/RequestUrl/UrlEditor'
+import RequestTabGroup from '../../Tab-Groups/RequestTabGroup'
 
 export const keyPairInitState = [
   {
@@ -11,32 +11,38 @@ export const keyPairInitState = [
     keyItem: '',
     valueItem: '',
   },
-];
+]
 
-export default function Request({ setResponse, setLoading, loading }: { setResponse: React.Dispatch<React.SetStateAction<any>>, setLoading: React.Dispatch<React.SetStateAction<boolean>>, loading: boolean }) {
-  const [url, setUrl] = useState(
-    'https://jsonplaceholder.typicode.com/todos/1'
-  );
-  const [reqMethod, setReqMethod] = useState('GET');
-  const [queryParams, setQueryParams] = useState<typeof keyPairInitState>(keyPairInitState);
-  const [headers, setHeaders] = useState<typeof keyPairInitState>(keyPairInitState);
-  const [body, setBody] = useState('{\n\t\n}');
+export default function Request({
+  setResponse,
+  setLoading,
+  loading,
+}: {
+  setResponse: React.Dispatch<React.SetStateAction<any>>
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  loading: boolean
+}) {
+  const [url, setUrl] = useState('https://jsonplaceholder.typicode.com/todos/1')
+  const [reqMethod, setReqMethod] = useState('GET')
+  const [queryParams, setQueryParams] = useState<typeof keyPairInitState>(keyPairInitState)
+  const [headers, setHeaders] = useState<typeof keyPairInitState>(keyPairInitState)
+  const [body, setBody] = useState('{\n\t\n}')
 
   const handleOnInputSend = async (e: any) => {
-    setLoading(true);
+    setLoading(true)
 
-    e.preventDefault();
-    const requestBody = body.toString();
-    console.log('http method', reqMethod);
-    console.log('headers', headers);
-    console.log('query params ', queryParams);
-    console.log('body ', requestBody);
+    e.preventDefault()
+    const requestBody = body.toString()
+    console.log('http method', reqMethod)
+    console.log('headers', headers)
+    console.log('query params ', queryParams)
+    console.log('body ', requestBody)
 
-    let data: any;
+    let data: any
     try {
-      data = JSON.parse(requestBody);
+      data = JSON.parse(requestBody)
     } catch (e) {
-      alert('Something is wrong with the JSON data.');
+      alert('Something is wrong with the JSON data.')
     }
 
     try {
@@ -46,16 +52,16 @@ export default function Request({ setResponse, setLoading, loading }: { setRespo
         params: convertKeyValueToObject(queryParams),
         headers: convertKeyValueToObject(headers),
         data,
-      } as AxiosRequestConfig);
+      } as AxiosRequestConfig)
 
-      setResponse(response);
+      setResponse(response)
     } catch (e) {
-      console.log(e);
-      setResponse(e);
+      console.log(e)
+      setResponse(e)
     }
 
-    setLoading(false);
-  };
+    setLoading(false)
+  }
   return (
     <>
       <UrlEditor
@@ -74,5 +80,5 @@ export default function Request({ setResponse, setLoading, loading }: { setRespo
         setBody={setBody}
       />
     </>
-  );
+  )
 }

@@ -1,35 +1,31 @@
 // use-code-mirror.ts
-import { useEffect, useState, useRef } from 'react';
-import { basicSetup } from 'codemirror';
-import { json } from '@codemirror/lang-json';
-import { Extension } from '@codemirror/state';
-import { EditorView } from '@codemirror/view';
+import { useEffect, useState, useRef } from 'react'
+import { basicSetup } from 'codemirror'
+import { json } from '@codemirror/lang-json'
+import { Extension } from '@codemirror/state'
+import { EditorView } from '@codemirror/view'
 
 export default function useCodeMirror(AddedExtensions: Extension[] = []) {
-    const ref = useRef<Element | DocumentFragment | undefined>();
-    const [view, setView] = useState<EditorView>();
+  const ref = useRef<Element | DocumentFragment | undefined>()
+  const [view, setView] = useState<EditorView>()
 
-    useEffect(() => {
-        const view = new EditorView({
-            extensions: [
-                basicSetup,
-                json(),
-                ...[],
-            ],
-            parent: ref.current,
-        });
+  useEffect(() => {
+    const view = new EditorView({
+      extensions: [basicSetup, json(), ...[]],
+      parent: ref.current,
+    })
 
-        setView(view);
+    setView(view)
 
-        /**
-         * Make sure to destroy the codemirror instance
-         * when our components are unmounted.
-         */
-        return () => {
-            view.destroy();
-            setView(undefined);
-        };
-    }, []);
+    /**
+     * Make sure to destroy the codemirror instance
+     * when our components are unmounted.
+     */
+    return () => {
+      view.destroy()
+      setView(undefined)
+    }
+  }, [])
 
-    return { ref, view };
+  return { ref, view }
 }
