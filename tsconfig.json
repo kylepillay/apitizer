@@ -22,7 +22,9 @@
       "@components/*": ["components/*"],
       "@extensions/*": ["extensions/*"],
       "@hooks/*": ["hooks/*"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@services/*": ["services/*"],
+      "@store/*": ["store/*"]
     }
   },
   "include": ["src", "src/types"]

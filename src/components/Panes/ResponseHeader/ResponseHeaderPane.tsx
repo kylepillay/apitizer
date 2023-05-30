@@ -1,10 +1,11 @@
+import { AxiosResponse } from 'axios';
 import React from 'react'
 
-export default function ResponseHeaderPane({ response }: { response: any }) {
-  const responseHeaders: { key: string; value: any }[] = []
+export default function ResponseHeaderPane({ response }: { response: AxiosResponse | undefined }) {
+  const responseHeaders: { key: string; value: string }[] = []
 
   if (!(response == null)) {
-    if ('headers' in response) {
+    if (response && 'headers' in response) {
       Object.entries(response.headers).forEach(([key, value]) => {
         responseHeaders.push({
           key: key,

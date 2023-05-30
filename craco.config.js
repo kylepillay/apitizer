@@ -11,6 +11,8 @@ module.exports = {
       '@extensions': path.resolve(__dirname, 'src/extensions'),
       '@hooks': path.resolve(__dirname, 'src/hooks'),
       '@utils': path.resolve(__dirname, 'src/utils'),
+      '@services': path.resolve(__dirname, 'src/services'),
+      '@store': path.resolve(__dirname, 'src/store'),
     },
   },
 }

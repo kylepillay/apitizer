@@ -1,29 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+
 import './App.css'
 import App from './App'
 
-import axios from 'axios'
-
-const updateEndTime = (response) => {
-  response.customData = response.customData || {}
-  response.customData.time = new Date().getTime() - response.config.customData.startTime
-  return response
-}
-
-axios.interceptors.request.use((request: any) => {
-  request.customData = request.customData || {}
-  request.customData.startTime = new Date().getTime()
-  return request
-})
-
-axios.interceptors.response.use(updateEndTime, (e) => {
-  return Promise.reject(updateEndTime(e.response))
-})
-
+const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(document.getElementById('root') as Element)
 root.render(
   <React.StrictMode>
-    <App />
+    <QueryClientProvider client={queryClient}>
+      <App />
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   </React.StrictMode>,
 )

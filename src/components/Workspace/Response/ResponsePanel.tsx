@@ -1,47 +1,18 @@
-import React, { useState, useEffect } from 'react'
-import prettyBytes from 'pretty-bytes'
+import React from 'react'
 
 import ResponseTabGroup from '../../Tab-Groups/ResponseTabGroup'
+import { useResponseData } from '@store/useResponseData';
 
-export default function Response({ response, loading }: { response: any; loading: boolean }) {
-  const [doc, setDoc] = useState('{}')
+export default function ResponsePanel() {
+  
+  const responseData = useResponseData(state => state)
 
-  useEffect(() => {
-    if (response === null) return
-    const jsonResponse = JSON.stringify(response.data, null, 2)
-    setDoc(jsonResponse)
-  }, [response, loading])
-
-  const hasResponse = !(response == null)
-
-  let time = ''
-  let status = ''
-  let size = ''
-
-  if (hasResponse) {
-    const hasCustomData = 'customData' in response
-    const hasData = 'data' in response
-    const hasHeaders = 'headers' in response
-
-    status = hasResponse ? response.status : 0
-
-    if (hasData && hasHeaders) {
-      size = prettyBytes(
-        (hasResponse ? JSON.stringify(response.data).length : 0) +
-          (hasResponse ? JSON.stringify(response.headers).length : 0),
-      )
-    }
-
-    if (hasCustomData) {
-      time = response.customData.time
-    }
-  }
   const RenderedResponseMeta = () => {
     return (
       <div className='mt-3 flex'>
-        <span className='w-28'>Status: {status}</span>
-        <span className='w-24'>Time: {time}</span>
-        <span className='w-24'>Size: {size}</span>
+        <span className='w-32'>Status: <span className='text-gray-500'>{responseData.status <= 0 ? '-' : responseData.status}</span></span>
+        <span className='w-32'>Time: <span className='text-gray-500'>{responseData.status <= 0 ? '-' : responseData.status}</span></span>
+        <span className='w-32'>Size: <span className='text-gray-500'>{responseData.status <= 0 ? '-' : responseData.status}</span></span>
       </div>
     )
   }
@@ -49,8 +20,8 @@ export default function Response({ response, loading }: { response: any; loading
   return (
     <div className='my-4'>
       <span className='text-2xl font-medium'>Response</span>
-      {response ? <RenderedResponseMeta /> : null}
-      <ResponseTabGroup doc={doc} setDoc={setDoc} response={response} loading={loading} />
+      {responseData ? <RenderedResponseMeta /> : null}
+      <ResponseTabGroup response={responseData} />
     </div>
   )
 }

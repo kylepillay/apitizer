@@ -7,4 +7,9 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+  'tailwindCSS.includeLanguages': {
+    javascript: 'javascript',
+    typescript: 'typescript',
+    html: 'HTML',
+  },
 }

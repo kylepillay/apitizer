@@ -18,7 +18,9 @@
     "searchcursor",
     "simplescrollbars",
     "tailwindcss",
-    "uuidv"
+    "tanstack",
+    "uuidv",
+    "zustand"
   ],
   "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
   "editor.formatOnPaste": false,
