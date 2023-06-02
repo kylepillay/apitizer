@@ -15,16 +15,10 @@ export default function ResponsePanel() {
             {responseData.status <= 0 ? '-' : responseData.status}
           </span>
         </span>
-        <span className='w-32'>
-          Time:{' '}
+        <span className='w-64'>
+          Status Text:{' '}
           <span className='text-gray-500'>
-            {responseData.status <= 0 ? '-' : responseData.status}
-          </span>
-        </span>
-        <span className='w-32'>
-          Size:{' '}
-          <span className='text-gray-500'>
-            {responseData.status <= 0 ? '-' : responseData.status}
+            {responseData.statusText ? responseData.statusText : 'No Status Text'}
           </span>
         </span>
       </div>

@@ -4,6 +4,7 @@ import RequestTabGroup from '@components/Tab-Groups/RequestTabGroup'
 import { useMakeRequest } from '@services/ApiService/request/queries'
 import { useApplicationData } from '@store/useApplicationData'
 import { useRequestData } from '@store/useRequestData'
+import { useResponseData } from '@store/useResponseData'
 
 const RequestPanel = () => {
   const {
@@ -21,13 +22,16 @@ const RequestPanel = () => {
   const { setRequestData, getRequestData } = useRequestData((state) => state)
 
   const { data: responseData, refetch } = useMakeRequest(getRequestData())
-
+  const { setResponseData } = useResponseData((state) => state)
   useEffect(() => {
     setRequestData({ method, url, params: queryParams, headers, data: responseBody })
   }, [method, url, queryParams, headers, requestBody])
 
   useEffect(() => {
-    responseData && setResponseBody(responseData.data)
+    if (responseData) {
+      setResponseData(responseData)
+      setResponseBody(responseData.data)
+    }
   }, [responseData])
 
   const handleOnInputSend = async () => {
