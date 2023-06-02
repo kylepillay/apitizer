@@ -20,10 +20,6 @@ const KeyValueEditor = ({
     _.debounce(setKeyPair, 500, keyValue)
   }, [keyValue])
 
-  useEffect(() => {
-    console.log(keyValue)
-  }, [keyPair])
-
   const handleOnChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setKeyValue((prevState: KeyValue) => ({

@@ -6,19 +6,28 @@ import { useApplicationData } from '@store/useApplicationData'
 import { useRequestData } from '@store/useRequestData'
 
 const RequestPanel = () => {
-  const { method, url, queryParams, headers, jsonBody, setUrl, setJsonResponse, setMethod } =
-    useApplicationData((state) => state)
+  const {
+    method,
+    url,
+    queryParams,
+    headers,
+    requestBody,
+    setUrl,
+    responseBody,
+    setMethod,
+    setResponseBody,
+  } = useApplicationData((state) => state)
 
   const { setRequestData, getRequestData } = useRequestData((state) => state)
 
   const { data: responseData, refetch } = useMakeRequest(getRequestData())
 
   useEffect(() => {
-    setRequestData({ method, url, params: queryParams, headers, data: jsonBody })
-  }, [method, url, queryParams, headers, jsonBody])
+    setRequestData({ method, url, params: queryParams, headers, data: responseBody })
+  }, [method, url, queryParams, headers, requestBody])
 
   useEffect(() => {
-    responseData && setJsonResponse(responseData.data)
+    responseData && setResponseBody(responseData.data)
   }, [responseData])
 
   const handleOnInputSend = async () => {

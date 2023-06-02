@@ -9,7 +9,7 @@ import JsonEditorPane from '@components/Panes/JsonEditorPane'
 import { useApplicationData } from '@store/useApplicationData'
 
 const RequestTabGroup = () => {
-  const { headers, queryParams, jsonBody, setHeaders, setQueryParams, setJsonBody } =
+  const { headers, queryParams, requestBody, setHeaders, setQueryParams, setRequestBody } =
     useApplicationData((state) => state)
 
   const requestTabs = [
@@ -47,7 +47,7 @@ const RequestTabGroup = () => {
         <KeyValuePane keyPairValueList={headers} onChange={setHeaders} />
       </TabPanel>
       <TabPanel>
-        <JsonEditorPane value={jsonBody} onChange={setJsonBody} />
+        <JsonEditorPane value={requestBody} onChange={setRequestBody} />
       </TabPanel>
     </Tabs>
   )

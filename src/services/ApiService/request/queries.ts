@@ -12,7 +12,6 @@ const apiService = ApiService.createInstance({
 
 const makeQueryApiCall = async (requestData: IRequestConfig): Promise<AxiosResponse> => {
   const response = await apiService.client(requestData)
-  console.log(response)
   return response
 }
 

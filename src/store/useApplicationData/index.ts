@@ -9,12 +9,12 @@ export interface KeyValuePair {
 }
 export interface IApplicationDataData {
   requestInProgress: boolean
-  jsonResponse: object
+  responseBody: object
   url: string
   setUrl: (url: string) => void
-  setJsonResponse: (json: object) => void
-  jsonBody: object
-  setJsonBody: (json: object) => void
+  setResponseBody: (body: object) => void
+  requestBody: object
+  setRequestBody: (body: object) => void
   method: string
   setMethod: (method: string) => void
   queryParams: KeyValuePair[]
@@ -31,11 +31,11 @@ export const useApplicationData = create<IApplicationDataData>()(
       url: 'https://jsonplaceholder.typicode.com/todos/1',
       method: 'GET',
       requestInProgress: false,
-      jsonResponse: {},
-      jsonBody: {},
+      responseBody: {},
+      requestBody: {},
 
-      setJsonResponse: (jsonResponse) => set({ jsonResponse }),
-      setJsonBody: (jsonResponse) => set({ jsonResponse }),
+      setResponseBody: (body) => set({ responseBody: body }),
+      setRequestBody: (body) => set({ requestBody: body }),
       setHeaders: (headers: KeyValuePair[]) => set({ headers }),
       setQueryParams: (queryParams: KeyValuePair[]) => set({ queryParams }),
       setMethod: (method: string) => set({ method }),

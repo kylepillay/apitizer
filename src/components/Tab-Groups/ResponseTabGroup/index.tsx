@@ -13,7 +13,7 @@ const ResponseTabGroup = ({
   response: AxiosResponse<unknown, unknown> | undefined
 }) => {
   const refreshInProgress = useApplicationData((state) => state.requestInProgress)
-  const { jsonResponse, setJsonResponse } = useApplicationData((state) => state)
+  const { responseBody, setResponseBody } = useApplicationData((state) => state)
 
   const responseTabs = [
     {
@@ -25,12 +25,6 @@ const ResponseTabGroup = ({
       title: 'Response Header',
     },
   ]
-
-  useEffect(() => {
-    if (response) {
-      console.log(jsonResponse)
-    }
-  }, [response])
 
   return (
     <Tabs forceRenderTabPanel selectedTabClassName='border-b-2 text-sky-800'>
@@ -49,7 +43,7 @@ const ResponseTabGroup = ({
         {refreshInProgress ? (
           <ThreeDots />
         ) : (
-          <CodeEditor value={jsonResponse} onChange={(value) => setJsonResponse(value)} />
+          <CodeEditor value={responseBody} onChange={(value) => setResponseBody(value)} />
         )}
       </TabPanel>
       <TabPanel>{refreshInProgress ? null : <ResponseHeaderPane response={response} />}</TabPanel>
