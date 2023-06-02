@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs'
 import { ThreeDots } from 'react-loader-spinner'
 
