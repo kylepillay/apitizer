@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
-import { onUpdate } from '../extensions/onUpdate'
-import useCodeMirror from '../hooks/useCodeMirror'
+import { onUpdate } from '@extensions/onEditorUpdate'
+import useCodeMirror from '../useCodeMirror'
 
 export function useCodeEditor({ value, onChange, extensions }) {
   const { ref, view } = useCodeMirror([onUpdate(onChange), ...extensions])
@@ -13,7 +13,7 @@ export function useCodeEditor({ value, onChange, extensions }) {
           changes: {
             from: 0,
             to: editorValue.length,
-            insert: value || '',
+            insert: JSON.stringify(value, null, 2) || '',
           },
         })
       }

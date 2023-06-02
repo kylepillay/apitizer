@@ -1,8 +1,9 @@
-import { AxiosResponse } from 'axios';
+import { KeyValuePair } from '@store/useApplicationData'
+import { AxiosResponse } from 'axios'
 import React from 'react'
 
-export default function ResponseHeaderPane({ response }: { response: AxiosResponse | undefined }) {
-  const responseHeaders: { key: string; value: string }[] = []
+const ResponseHeaderPane = ({ response }: { response: AxiosResponse | undefined }) => {
+  const responseHeaders: KeyValuePair[] = []
 
   if (!(response == null)) {
     if (response && 'headers' in response) {
@@ -34,3 +35,5 @@ export default function ResponseHeaderPane({ response }: { response: AxiosRespon
     </table>
   )
 }
+
+export default ResponseHeaderPane

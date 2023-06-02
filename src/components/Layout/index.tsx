@@ -1,8 +1,8 @@
 import React from 'react'
-import Navbar from './Navbar/Navbar'
+import Navbar from './Navbar'
 import Sidebar from './Sidebar'
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <div className='flex h-screen'>
@@ -15,3 +15,5 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     </>
   )
 }
+
+export default Layout

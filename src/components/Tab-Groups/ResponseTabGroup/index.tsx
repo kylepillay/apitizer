@@ -1,20 +1,19 @@
 import React, { useEffect } from 'react'
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs'
 import { ThreeDots } from 'react-loader-spinner'
 
-import ResponseHeaderPane from '../Panes/ResponseHeader/ResponseHeaderPane'
-import CodeEditor from '../../components/General/CodeEditor'
+import ResponseHeaderPane from '../../Panes/ResponseHeaderPane'
+import CodeEditor from '../../General/CodeEditor'
 import { AxiosResponse } from 'axios'
 import { useApplicationData } from '@store/useApplicationData'
 
-export default function ResponseTabGroup({
-  response
+const ResponseTabGroup = ({
+  response,
 }: {
   response: AxiosResponse<unknown, unknown> | undefined
-}) {
-
-  const refreshInProgress =  useApplicationData(state => state.requestInProgress)
-  const { currentJsonResponse, setJsonResponse } = useApplicationData(state => state)
+}) => {
+  const refreshInProgress = useApplicationData((state) => state.requestInProgress)
+  const { jsonResponse, setJsonResponse } = useApplicationData((state) => state)
 
   const responseTabs = [
     {
@@ -29,10 +28,9 @@ export default function ResponseTabGroup({
 
   useEffect(() => {
     if (response) {
-      const jsonEncodedResponse = response ? JSON.stringify(response.data, null, 2): '{}'
-      setJsonResponse(jsonEncodedResponse)
+      console.log(jsonResponse)
     }
-  }, [response]);
+  }, [response])
 
   return (
     <Tabs forceRenderTabPanel selectedTabClassName='border-b-2 text-sky-800'>
@@ -48,9 +46,15 @@ export default function ResponseTabGroup({
       </TabList>
 
       <TabPanel className='react-tabs__tab-panel rounded-b-lg border border-t-0 border-gray-300 px-4 py-4'>
-        {refreshInProgress ? <ThreeDots /> : <CodeEditor value={currentJsonResponse} onChange={(value) => setJsonResponse(value as string)} />}
+        {refreshInProgress ? (
+          <ThreeDots />
+        ) : (
+          <CodeEditor value={jsonResponse} onChange={(value) => setJsonResponse(value)} />
+        )}
       </TabPanel>
       <TabPanel>{refreshInProgress ? null : <ResponseHeaderPane response={response} />}</TabPanel>
     </Tabs>
   )
 }
+
+export default ResponseTabGroup

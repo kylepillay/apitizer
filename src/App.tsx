@@ -1,18 +1,17 @@
-import React, { useState } from 'react'
-import Layout from './components/Layout/Layout'
-import Request from './components/Workspace/Request/RequestPanel'
-import Response from './components/Workspace/Response/ResponsePanel'
+import React from 'react'
 
-export const AppContext = React.createContext<object>({});
+import Layout from '@components/Layout'
+import Request from '@components/Workspace/Request/RequestPanel'
+import Response from '@components/Workspace/Response/ResponsePanel'
+
+import './App.scss'
 
 const App = () => {
   return (
-    <AppContext.Provider value={{}}>
-      <Layout>
-        <Request />
-        <Response />
-      </Layout>
-    </AppContext.Provider>
+    <Layout>
+      <Request />
+      <Response />
+    </Layout>
   )
 }
 

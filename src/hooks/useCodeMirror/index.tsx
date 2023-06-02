@@ -1,17 +1,17 @@
 // use-code-mirror.ts
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { basicSetup } from 'codemirror'
 import { json } from '@codemirror/lang-json'
 import { Extension } from '@codemirror/state'
 import { EditorView } from '@codemirror/view'
 
-export default function useCodeMirror(AddedExtensions: Extension[] = []) {
+const useCodeMirror = (AddedExtensions: Extension[] = []) => {
   const ref = useRef<Element | DocumentFragment | undefined>()
   const [view, setView] = useState<EditorView>()
 
   useEffect(() => {
     const view = new EditorView({
-      extensions: [basicSetup, json(), ...[]],
+      extensions: [basicSetup, json(), ...AddedExtensions],
       parent: ref.current,
     })
 
@@ -29,3 +29,5 @@ export default function useCodeMirror(AddedExtensions: Extension[] = []) {
 
   return { ref, view }
 }
+
+export default useCodeMirror

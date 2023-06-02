@@ -1,4 +1,4 @@
-import { RefObject } from 'react'
+import React, { RefObject } from 'react'
 import { useCodeEditor } from '../../../hooks/useCodeEditor'
 
 export default function CodeEditor({
@@ -6,8 +6,8 @@ export default function CodeEditor({
   onChange,
   extensions = [],
 }: {
-  value: string
-  onChange: React.Dispatch<React.SetStateAction<string>>
+  value: unknown
+  onChange: (json: object) => void
   extensions?: []
 }) {
   const ref = useCodeEditor({ value, onChange, extensions })

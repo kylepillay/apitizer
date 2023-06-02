@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { SVGProps } from 'react'
 
-const Logo = ({color, ...props}: SVGProps<SVGSVGElement>) => (
+const Logo = ({ color, ...props }: SVGProps<SVGSVGElement>) => (
   <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 419.76 202.03' {...props}>
     <g data-name='Layer 2'>
       <g fill={color}>
