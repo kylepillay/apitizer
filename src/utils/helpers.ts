@@ -13,4 +13,15 @@ const convertKeyValueToObject = (keyPairs: KeyValuePair[]) => {
   }, {})
 }
 
-export { convertKeyValueToObject }
+const checkAndGetBody = (newBody: object | string, currentBody: object): object | undefined => {
+  const bodyObject = typeof newBody === 'string' ? JSON.parse(newBody) : newBody
+
+  if (
+    Object.keys(bodyObject).length > 0 &&
+    JSON.stringify(currentBody) != JSON.stringify(bodyObject)
+  ) {
+    return bodyObject
+  }
+}
+
+export { convertKeyValueToObject, checkAndGetBody }

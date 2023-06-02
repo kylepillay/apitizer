@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs'
 import { ThreeDots } from 'react-loader-spinner'
 
@@ -26,6 +26,10 @@ const ResponseTabGroup = ({
     },
   ]
 
+  const onCodeChange = useCallback((json: string) => {
+    setResponseBody(json)
+  }, [])
+
   return (
     <Tabs forceRenderTabPanel selectedTabClassName='border-b-2 text-sky-800'>
       <TabList className='mt-5 flex rounded-t-lg border border-gray-300'>
@@ -43,7 +47,7 @@ const ResponseTabGroup = ({
         {refreshInProgress ? (
           <ThreeDots />
         ) : (
-          <CodeEditor value={responseBody} onChange={(value) => setResponseBody(value)} />
+          <CodeEditor value={responseBody} onChange={onCodeChange} />
         )}
       </TabPanel>
       <TabPanel>{refreshInProgress ? null : <ResponseHeaderPane response={response} />}</TabPanel>
