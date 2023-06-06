@@ -1,0 +1,17 @@
+{
+  "name": "apitizer",
+  "version": "0.0.1",
+  "description": "A tool to test and mock APIs",
+  "license": "MIT",
+  "author": {
+    "name": "Kyle Pillay",
+    "email": "kylepillay@gmail.com",
+    "url": "https://github.com/apitizer"
+  },
+  "main": "./dist/main/main.js",
+  "scripts": {
+    "rebuild": "node -r ts-node/register ../../.erb/scripts/electron-rebuild.js",
+    "postinstall": "npm run rebuild && npm run link-modules",
+    "link-modules": "node -r ts-node/register ../../.erb/scripts/link-modules.ts"
+  }
+}
