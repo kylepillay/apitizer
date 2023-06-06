@@ -1,0 +1,11 @@
+.tab-list {
+  @apply mt-5 flex rounded-t-lg border border-gray-300;
+}
+
+.tab-trigger {
+  @apply mr-3 cursor-pointer border-sky-600 px-4 py-2 hover:text-sky-700 focus:outline-none;
+}
+
+.tab-content {
+  @apply rounded-b-lg border border-t-0 border-gray-300 px-4 py-4;
+}
