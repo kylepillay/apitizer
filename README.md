@@ -1,7 +1,6 @@
-
 # APItizer
 
-![APItizer](src/assets/logo.svg "APItizer")
+![APItizer](src/renderer/assets/logo.svg 'APItizer')
 
 ---
 
@@ -25,7 +24,7 @@ APItizer is a web application built using ReactJS and styled using Tailwind CSS.
 
 Software you need to have installed.
 
-``` text
+```text
 [Node.js](https://www.example.com)
 [npm](https://www.npmjs.com/) (Usually bundled with Node.js)
 ```
@@ -38,29 +37,29 @@ These instructions will get you a copy of the project up and running on your loc
 
 Run the following in your Terminal.
 
-``` sh
+```sh
 git clone https://github.com/kylepillay/apitizer
 ```
 
 Or if you prefer SSH (Recommended)
 
-``` sh
+```sh
 git clone git@github.com:kylepillay/apitizer.git
 ```
 
-``` sh
+```sh
  cd apitizer
 ```
 
 Now we need to install the dependencies. run:
 
-``` sh
+```sh
 npm install
 ```
 
 Finally, we can run the project. Running the following will open up your project in your default browser at localhost:3000
 
-``` sh
+```sh
 npm start
 ```
 
@@ -68,31 +67,31 @@ You should see the application running in your browser now.
 
 ### 🔧 Running the Tests</a> <a name = "running-tests"></a>
 
-``` text
+```text
 TODO
 ```
 
 ### Testing Breakdown <a name = "tests_breakdown"></a>
 
-``` text
+```text
 TODO
 ```
 
 ### Coding Style and Linting <a name = "coding_style"></a>
 
-``` text
+```text
 TODO
 ```
 
 ## 🎈 Usage <a name = "usage"></a>
 
-``` text
+```text
 TODO
 ```
 
 ## 🚀 Deployment <a name = "deployment"></a>
 
-``` text
+```text
 TODO
 ```
 
