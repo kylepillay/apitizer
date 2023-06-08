@@ -28,6 +28,7 @@ export default function KeyValuePane({
   }
 
   const onKeyPairUpdate = (keyValue: KeyValue) => {
+    console.log('keyValue', keyValue)
     const elementIndex = keyPairValueList.findIndex(
       (element: KeyValuePair) => element.id === keyValue.id,
     )

@@ -6,8 +6,8 @@ const JsonEditorPane = ({
   onChange,
   extensions = [],
 }: {
-  value: object
-  onChange: (value: object) => void
+  value: string
+  onChange: (value: string) => void
   extensions?: []
 }) => {
   const ref = useCodeEditor({ value, onChange, extensions })

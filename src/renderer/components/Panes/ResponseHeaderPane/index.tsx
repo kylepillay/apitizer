@@ -1,19 +1,15 @@
 import { KeyValuePair } from '../../../store/useApplicationData'
-import { AxiosResponse } from 'axios'
-import React from 'react'
 
-const ResponseHeaderPane = ({ response }: { response: AxiosResponse | undefined }) => {
+const ResponseHeaderPane = ({ headers }: { headers?: object }) => {
   const responseHeaders: KeyValuePair[] = []
 
-  if (!(response == null)) {
-    if (response && 'headers' in response) {
-      Object.entries(response.headers).forEach(([key, value]) => {
-        responseHeaders.push({
-          key: key,
-          value: value,
-        })
+  if (headers && Object.keys(headers).length) {
+    Object.entries(headers).forEach(([key, value]) => {
+      responseHeaders.push({
+        key: key,
+        value: value,
       })
-    }
+    })
   }
   const renderedHeaders = responseHeaders.map(({ key, value }) => {
     return (

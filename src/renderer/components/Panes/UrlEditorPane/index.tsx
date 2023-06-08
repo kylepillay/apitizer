@@ -3,12 +3,14 @@ import React, { useCallback } from 'react'
 import { requestMethods } from '../../../constants/index'
 export default function UrlEditor({
   url,
+  queryParamsString = '',
   setUrl,
   reqMethod,
   setReqMethod,
   onInputSend,
 }: {
   url: string
+  queryParamsString: string
   setUrl: (url: string) => void
   reqMethod: string
   setReqMethod: (url: string) => void
@@ -52,7 +54,7 @@ export default function UrlEditor({
         </select>
         <input
           className='ml-3 w-full rounded-md border border-gray-300 px-4 py-2 hover:border-sky-700 focus:outline-sky-700'
-          value={url}
+          value={url + queryParamsString}
           onChange={onUrlChange}
         />
         <button

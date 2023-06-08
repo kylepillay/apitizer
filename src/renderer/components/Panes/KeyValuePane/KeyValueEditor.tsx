@@ -17,20 +17,19 @@ const KeyValueEditor = ({
   const [keyValue, setKeyValue] = useState<KeyValue>(keyPair)
 
   useEffect(() => {
-    _.debounce<(keyPair: KeyValue) => void>(setKeyPair, 500, {
-      leading: true,
-    })
+    setKeyPair(keyValue)
   }, [keyValue])
 
   const handleOnChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
+      console.log('e', e.target.name, e.target.value)
       setKeyValue((prevState: KeyValue) => ({
         ...prevState,
-        id: keyValue.id,
+        id: prevState.id,
         [e?.target?.name]: e?.target?.value,
       }))
     },
-    [setKeyValue, keyValue],
+    [setKeyValue],
   )
 
   const onKeyPairRemoveClick = useCallback(() => {
@@ -43,13 +42,13 @@ const KeyValueEditor = ({
         <input
           className='w-full rounded-md border border-gray-300 px-4 py-1.5  hover:border-sky-700 focus:outline-sky-700'
           placeholder='Key'
-          name='keyItem'
+          name='key'
           onChange={handleOnChange}
         />
         <input
           className='ml-3 w-full rounded-md border border-gray-300 px-4 py-1.5 hover:border-sky-700 focus:outline-sky-700'
           placeholder='Value'
-          name='valueItem'
+          name='value'
           onChange={handleOnChange}
         />
         <button

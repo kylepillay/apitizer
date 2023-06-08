@@ -2,8 +2,17 @@ import { useEffect } from 'react'
 import { onUpdate } from '../../extensions/onEditorUpdate'
 import useCodeMirror from '../useCodeMirror'
 
-export function useCodeEditor({ value, onChange, extensions }: any) {
-  const { ref, view } = useCodeMirror([onUpdate(onChange), ...extensions])
+export function useCodeEditor({
+  value,
+  onChange,
+  extensions = [],
+}: {
+  value: string
+  onChange?: (json: string) => void
+  extensions?: []
+}) {
+  const checkedOnChange = onChange || (() => console.log('onChange not provided'))
+  const { ref, view } = useCodeMirror([onUpdate(checkedOnChange), ...extensions])
   useEffect(() => {
     if (view) {
       const editorValue = view.state.doc.toString()
@@ -13,7 +22,7 @@ export function useCodeEditor({ value, onChange, extensions }: any) {
           changes: {
             from: 0,
             to: editorValue.length,
-            insert: JSON.stringify(value, null, 2) || '',
+            insert: value || '',
           },
         })
       }

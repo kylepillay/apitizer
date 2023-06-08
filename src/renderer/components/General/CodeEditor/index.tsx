@@ -6,8 +6,8 @@ export default function CodeEditor({
   onChange,
   extensions = [],
 }: {
-  value: unknown
-  onChange: (json: string) => void
+  value: string
+  onChange?: (json: string) => void
   extensions?: []
 }) {
   const ref = useCodeEditor({ value, onChange, extensions })

@@ -1,6 +1,5 @@
 import { create } from 'zustand'
 import { KeyValuePair } from '../../store/useApplicationData'
-import { convertKeyValueToObject } from '../../utils/helpers'
 
 export interface IUnformattedRequest {
   method: string
@@ -10,19 +9,24 @@ export interface IUnformattedRequest {
   params: KeyValuePair[]
 }
 
-export const useRequestData = create((set, get: any) => ({
+export interface IUseRequestData extends IUnformattedRequest {
+  setRequestData: (data: IUnformattedRequest) => void
+  getRequestData: () => IUnformattedRequest
+}
+
+export const useRequestData = create<IUseRequestData>((set, get) => ({
   url: '',
   method: '',
-  params: {},
-  headers: {},
+  params: [],
+  headers: [],
   data: {},
 
-  setRequestData: (data: any) => {
+  setRequestData: (data: IUnformattedRequest) => {
     set({
       url: data.url,
       method: data.method,
-      params: convertKeyValueToObject(data.params),
-      headers: convertKeyValueToObject(data.headers),
+      params: data.params,
+      headers: data.headers,
       data: data.data,
     })
   },
