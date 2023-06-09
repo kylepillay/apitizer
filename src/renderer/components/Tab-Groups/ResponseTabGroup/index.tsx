@@ -23,7 +23,7 @@ const ResponseTabGroup = () => {
       </Tabs.List>
 
       <Tabs.Content value='response-body' className='tab-content'>
-        {refreshInProgress ? <ThreeDots /> : <CodeEditor value={json} />}
+        {refreshInProgress ? <ThreeDots /> : <CodeEditor value={json} readOnly />}
       </Tabs.Content>
       <Tabs.Content value='response-headers' className='tab-content'>
         {refreshInProgress ? null : <ResponseHeaderPane headers={headers} />}

@@ -1,18 +1,25 @@
 import { useEffect } from 'react'
 import { onUpdate } from '../../extensions/onEditorUpdate'
 import useCodeMirror from '../useCodeMirror'
+import setReadOnly from '../../extensions/readOnly'
 
 export function useCodeEditor({
   value,
   onChange,
   extensions = [],
+  readOnly = false,
 }: {
   value: string
   onChange?: (json: string) => void
   extensions?: []
+  readOnly?: boolean
 }) {
-  const checkedOnChange = onChange || (() => console.log('onChange not provided'))
-  const { ref, view } = useCodeMirror([onUpdate(checkedOnChange), ...extensions])
+  const checkedOnChange = onChange || (() => null)
+  const { ref, view } = useCodeMirror([
+    onUpdate(checkedOnChange),
+    setReadOnly(readOnly),
+    ...extensions,
+  ])
   useEffect(() => {
     if (view) {
       const editorValue = view.state.doc.toString()
