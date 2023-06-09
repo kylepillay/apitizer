@@ -13,6 +13,10 @@ import path from 'path'
 import { app, BrowserWindow, shell, ipcMain } from 'electron'
 import { autoUpdater } from 'electron-updater'
 import log from 'electron-log'
+import installExtension, {
+  REDUX_DEVTOOLS,
+  REACT_DEVELOPER_TOOLS,
+} from 'electron-devtools-installer'
 import MenuBuilder from './menu'
 import { resolveHtmlPath } from './util'
 import { onMakeRequest } from './eventListeners'
@@ -26,6 +30,12 @@ class AppUpdater {
 }
 
 let mainWindow: BrowserWindow | null = null
+
+app.whenReady().then(() => {
+  installExtension([REDUX_DEVTOOLS, REACT_DEVELOPER_TOOLS])
+    .then((name) => console.log(`Added Extension:  ${name}`))
+    .catch((err) => console.log('An error occurred: ', err))
+})
 
 ipcMain.on('make-request', onMakeRequest)
 

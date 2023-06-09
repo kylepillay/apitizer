@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import KeyValueEditor, { KeyValue } from './KeyValueEditor'
+import KeyValueEditor from './KeyValueEditor'
 import { KeyValuePair } from '../../../store/useApplicationData'
 
 export default function KeyValuePane({
@@ -10,7 +10,10 @@ export default function KeyValuePane({
   keyPairValueList: KeyValuePair[]
   onChange: (keyPairValueList: KeyValuePair[]) => void
 }) {
-  const onKeyPairAdd = () => {
+  useEffect(() => {
+    console.log('keyPairValueList', keyPairValueList)
+  }, [keyPairValueList])
+  const onKeyPairAdd = useCallback(() => {
     onChange([
       ...keyPairValueList,
       {
@@ -19,16 +22,16 @@ export default function KeyValuePane({
         value: '',
       },
     ])
-  }
+  }, [onChange])
 
   const onKeyPairRemove = (keyPair: KeyValuePair) => {
     let newKeyValues = [...keyPairValueList]
+
     newKeyValues = newKeyValues.filter((x) => x.id !== keyPair.id)
     onChange(newKeyValues)
   }
 
-  const onKeyPairUpdate = (keyValue: KeyValue) => {
-    console.log('keyValue', keyValue)
+  const onKeyPairUpdate = (keyValue: KeyValuePair) => {
     const elementIndex = keyPairValueList.findIndex(
       (element: KeyValuePair) => element.id === keyValue.id,
     )
@@ -45,7 +48,7 @@ export default function KeyValuePane({
     return (
       <KeyValueEditor
         key={keyValuePair.id}
-        keyPair={{ key: keyValuePair.key, value: keyValuePair.value }}
+        keyPair={{ id: keyValuePair.id, key: keyValuePair.key, value: keyValuePair.value }}
         setKeyPair={(keyPairValue) => onKeyPairUpdate(keyPairValue)}
         onKeyPairRemove={() => onKeyPairRemove(keyValuePair)}
       />

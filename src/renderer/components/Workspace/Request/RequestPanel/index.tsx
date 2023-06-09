@@ -20,6 +20,7 @@ const RequestPanel = () => {
       headers,
       data: requestBody,
     })
+    console.log('queryParams', queryParams)
   }, [method, url, queryParams, headers, requestBody])
 
   useEffect(() => {

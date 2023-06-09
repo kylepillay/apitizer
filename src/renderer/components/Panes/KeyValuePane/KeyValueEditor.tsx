@@ -1,32 +1,36 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import _ from 'lodash'
+import { KeyValuePair } from 'main/types'
 
-export interface KeyValue {
-  key: string
-  [value: string]: string
-}
 const KeyValueEditor = ({
   keyPair,
   setKeyPair,
   onKeyPairRemove,
 }: {
-  keyPair: KeyValue
-  setKeyPair: (keyPair: KeyValue) => void
-  onKeyPairRemove: (keyPair: KeyValue) => void
+  keyPair: KeyValuePair
+  setKeyPair: (keyPair: KeyValuePair) => void
+  onKeyPairRemove: (keyPair: KeyValuePair) => void
 }) => {
-  const [keyValue, setKeyValue] = useState<KeyValue>(keyPair)
+  const [keyValue, setKeyValue] = useState<KeyValuePair>(keyPair)
 
   useEffect(() => {
-    setKeyPair(keyValue)
+    debouncedInput(keyValue)
   }, [keyValue])
+
+  const debouncedInput = useCallback(
+    _.debounce((keyValue) => {
+      setKeyPair(keyValue)
+    }, 300),
+    [setKeyPair],
+  )
 
   const handleOnChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      console.log('e', e.target.name, e.target.value)
-      setKeyValue((prevState: KeyValue) => ({
+      setKeyValue((prevState: KeyValuePair) => ({
         ...prevState,
         id: prevState.id,
-        [e?.target?.name]: e?.target?.value,
+        key: e?.target?.name === 'key' ? e?.target?.value : prevState?.key,
+        value: e?.target?.name === 'value' ? e?.target?.value : prevState?.value,
       }))
     },
     [setKeyValue],

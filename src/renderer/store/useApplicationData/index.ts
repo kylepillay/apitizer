@@ -1,9 +1,10 @@
 import { create } from 'zustand'
+import { devtools } from 'zustand/middleware'
 
-import { defaultKeyValuePair } from '../../constants/index'
+import { getDefaultKeyValuePair } from '../../constants/index'
 
 export interface KeyValuePair {
-  id?: string
+  id: string
   key: string
   value: string
 }
@@ -24,26 +25,28 @@ export interface IApplicationDataData {
   setRequestInProgress: (requestInProgress: boolean) => void
 }
 
-export const useApplicationData = create<IApplicationDataData>()((set, get) => ({
-  headers: [defaultKeyValuePair],
-  queryParams: [defaultKeyValuePair],
-  url: 'https://jsonplaceholder.typicode.com/todos/1',
-  method: 'GET',
-  requestInProgress: false,
-  responseBody: '{}',
-  requestBody: '{}',
+export const useApplicationData = create<IApplicationDataData>()(
+  devtools((set, get) => ({
+    headers: [getDefaultKeyValuePair()],
+    queryParams: [getDefaultKeyValuePair()],
+    url: 'https://jsonplaceholder.typicode.com/todos/1',
+    method: 'GET',
+    requestInProgress: false,
+    responseBody: '{}',
+    requestBody: '{}',
 
-  setResponseBody: (body) => {
-    set({ responseBody: body })
-  },
-  setRequestBody: (body) => {
-    set({ requestBody: body })
-  },
-  setHeaders: (headers: KeyValuePair[]) => set({ headers }),
-  setQueryParams: (queryParams: KeyValuePair[]) => set({ queryParams }),
-  setMethod: (method: string) => set({ method }),
-  setUrl: (url: string) => set({ url }),
-  setRequestInProgress: (requestInProgress: boolean) => {
-    set({ requestInProgress })
-  },
-}))
+    setResponseBody: (body) => {
+      set({ responseBody: body })
+    },
+    setRequestBody: (body) => {
+      set({ requestBody: body })
+    },
+    setHeaders: (headers: KeyValuePair[]) => set({ headers }),
+    setQueryParams: (queryParams: KeyValuePair[]) => set({ queryParams }),
+    setMethod: (method: string) => set({ method }),
+    setUrl: (url: string) => set({ url }),
+    setRequestInProgress: (requestInProgress: boolean) => {
+      set({ requestInProgress })
+    },
+  })),
+)
