@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import KeyValueEditor from './KeyValueEditor'
 import { KeyValuePair } from '../../../store/useApplicationData'
@@ -10,9 +10,6 @@ export default function KeyValuePane({
   keyPairValueList: KeyValuePair[]
   onChange: (keyPairValueList: KeyValuePair[]) => void
 }) {
-  useEffect(() => {
-    console.log('keyPairValueList', keyPairValueList)
-  }, [keyPairValueList])
   const onKeyPairAdd = useCallback(() => {
     onChange([
       ...keyPairValueList,

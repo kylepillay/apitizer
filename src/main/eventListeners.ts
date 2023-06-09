@@ -19,10 +19,12 @@ export const onMakeRequest = async (event: Electron.IpcMainEvent, args: IRequest
   let response = {} as IResponse
   let fetchResponse: Response
 
+  const methodsThatAllowBody = ['POST', 'PUT', 'PATCH']
   try {
     fetchResponse = await fetch(args.url, {
       method: args.method,
       headers: myHeaders,
+      ...(methodsThatAllowBody.indexOf(args.method) >= 0 && { body: JSON.parse(args.data) }),
     })
     const fetchResponseClone = fetchResponse.clone()
     const json = await fetchResponse.json()
