@@ -12,7 +12,7 @@ export default function ResponsePanel() {
         <span className='w-32'>
           Status:{' '}
           <span className='text-gray-500'>
-            {responseData.status <= 0 ? '-' : responseData.status}
+            {responseData?.status && responseData?.status <= 0 ? '-' : responseData.status}
           </span>
         </span>
         <span className='w-64'>
@@ -29,7 +29,7 @@ export default function ResponsePanel() {
     <div className='my-4'>
       <span className='text-2xl font-medium'>Response</span>
       {responseData ? <RenderedResponseMeta /> : null}
-      <ResponseTabGroup response={responseData} />
+      <ResponseTabGroup />
     </div>
   )
 }

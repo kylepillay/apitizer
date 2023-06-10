@@ -5,12 +5,14 @@ export default function CodeEditor({
   value,
   onChange,
   extensions = [],
+  readOnly = false,
 }: {
-  value: unknown
-  onChange: (json: string) => void
+  readOnly?: boolean
+  value: string
+  onChange?: (json: string) => void
   extensions?: []
 }) {
-  const ref = useCodeEditor({ value, onChange, extensions })
+  const ref = useCodeEditor({ value, onChange, extensions, readOnly })
 
   return <div ref={ref as RefObject<HTMLDivElement>} />
 }
