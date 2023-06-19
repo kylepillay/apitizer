@@ -2,7 +2,7 @@ import * as React from 'react'
 import { SVGProps } from 'react'
 
 const Logo = ({ color, ...props }: SVGProps<SVGSVGElement>) => (
-  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 419.76 202.03' {...props}>
+  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 450 202.03' {...props}>
     <g data-name='Layer 2'>
       <g fill={color}>
         <path d='m41.66 177.58-18.54 4.97-19.63 5.25 5.27-19.63 5.05-18.92a89.338 89.338 0 0 0 27.85 28.32Z' />
