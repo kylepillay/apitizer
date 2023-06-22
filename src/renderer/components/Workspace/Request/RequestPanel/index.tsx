@@ -1,26 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import UrlEditor from '../../../../components/Panes/UrlEditorPane'
 import RequestTabGroup from '../../../../components/Tab-Groups/RequestTabGroup'
-import { useApplicationData } from '../../../../store/useApplicationData'
-import { useRequestData } from 'renderer/store/useRequestData'
+import { RequestTab, useApplicationData } from '../../../../store/useApplicationData'
 
-const RequestPanel = () => {
-  const { method, url, queryParams, headers, requestBody, setUrl, setMethod } = useApplicationData(
+const RequestPanel = ({ id, method, url, headers, queryParams, body }: RequestTab) => {
+  const { onChangeRequestUrl, onChangeRequestMethod, getRequestData } = useApplicationData(
     (state) => state,
   )
 
-  const { getRequestData, setRequestData } = useRequestData((state) => state)
   const [queryParamsString, setQueryParamsString] = useState('')
-
-  useEffect(() => {
-    setRequestData({
-      method,
-      url,
-      params: queryParams,
-      headers,
-      data: requestBody,
-    })
-  }, [method, url, queryParams, headers, requestBody])
 
   useEffect(() => {
     let newQueryParamsString = ''
@@ -40,15 +28,17 @@ const RequestPanel = () => {
     <>
       <UrlEditor
         url={url}
-        setUrl={setUrl}
+        setUrl={onChangeRequestUrl}
+        requestId={id}
         queryParamsString={queryParamsString}
         reqMethod={method}
-        setReqMethod={setMethod}
+        setReqMethod={onChangeRequestMethod}
         onInputSend={() => {
-          window.electron.ipcRenderer.sendMessage('make-request', getRequestData())
+          console.log(getRequestData(id))
+          window.electron.ipcRenderer.sendMessage('make-request', getRequestData(id))
         }}
       />
-      <RequestTabGroup />
+      <RequestTabGroup body={body} queryParams={queryParams} headers={headers} requestTabId={id} />
     </>
   )
 }

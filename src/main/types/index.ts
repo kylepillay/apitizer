@@ -1,5 +1,5 @@
 export interface KeyValuePair {
-  id: string
+  id: number
   key: string
   value: string
 }
@@ -7,7 +7,7 @@ export interface KeyValuePair {
 export interface IRequestData {
   url: string
   method: string
-  params: KeyValuePair[]
+  queryParams: KeyValuePair[]
   headers: KeyValuePair[]
   data: string
 }

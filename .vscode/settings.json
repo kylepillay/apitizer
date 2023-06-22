@@ -27,6 +27,7 @@
     "heroicons",
     "immer",
     "tailwindcss",
+    "typeorm",
     "uuidv",
     "zustand"
   ],

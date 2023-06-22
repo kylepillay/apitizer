@@ -10,7 +10,7 @@ export function useCodeEditor({
   readOnly = false,
 }: {
   value: string
-  onChange?: (json: string) => void
+  onChange?: (body: string) => void
   extensions?: []
   readOnly?: boolean
 }) {

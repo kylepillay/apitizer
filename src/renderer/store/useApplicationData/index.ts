@@ -1,70 +1,177 @@
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
-import { v4 as uuidv4 } from 'uuid'
 import * as O from 'optics-ts'
 
 import { getDefaultKeyValuePair } from '../../constants/index'
 
 export interface KeyValuePair {
-  id: string
+  id: number
   key: string
   value: string
 }
 
 export interface RequestTab {
-  id: string
+  id: number
   name: string
+  method: string
+  url: string
+  body: string
+  headers: KeyValuePair[]
+  queryParams: KeyValuePair[]
 }
 
 export interface IApplicationDataData {
   requestInProgress: boolean
-  responseBody: string
-  url: string
   requestTabs: RequestTab[]
-  setUrl: (url: string) => void
-  setResponseBody: (body: string) => void
-  requestBody: string
-  setRequestBody: (body: string) => void
-  method: string
-  setMethod: (method: string) => void
-  queryParams: KeyValuePair[]
-  setQueryParams: (params: KeyValuePair[]) => void
-  headers: KeyValuePair[]
-  setHeaders: (headers: KeyValuePair[]) => void
+  addNewRequest: (requestItem: RequestTab) => void
   setRequestInProgress: (requestInProgress: boolean) => void
-  addNewRequest: () => void
+  onAddKeyPair: (
+    keyValuePair: KeyValuePair,
+    type: 'Headers' | 'QueryParams',
+    requestTabId: number,
+  ) => void
+  onRemoveKeyPair: (
+    keyValuePair: KeyValuePair,
+    type: 'Headers' | 'QueryParams',
+    requestTabId: number,
+  ) => void
+  onUpdateKeyPair: (
+    keyValuePair: KeyValuePair,
+    type: 'Headers' | 'QueryParams',
+    requestTabId: number,
+  ) => void
+  onChangeRequestBody: (body: string, requestTabId: number) => void
+  onChangeRequestUrl: (url: string, requestTabId: number) => void
+  onChangeRequestMethod: (method: string, requestTabId: number) => void
+  onChangeRequestName: (name: string, requestTabId: number) => void
+  onChangeRequestTab: (requestTabId: number) => void
+  getRequestData: (requestTabId: number) => RequestTab
 }
 
 export const useApplicationData = create<IApplicationDataData>()(
   devtools((set, get) => ({
     headers: [getDefaultKeyValuePair()],
     queryParams: [getDefaultKeyValuePair()],
-    requestTabs: [{ id: uuidv4(), name: 'New Request' }],
-
-    url: 'https://jsonplaceholder.typicode.com/todos/1',
-    method: 'GET',
+    requestTabs: [
+      {
+        id: 1000 + Math.floor(Math.random() * 1000),
+        name: 'New Request',
+        url: 'https://jsonplaceholder.typicode.com/todos/1',
+        method: 'GET',
+        body: '',
+        headers: [
+          {
+            id: 1000 + Math.floor(Math.random() * 1000),
+            key: 'Content-Type',
+            value: 'application/json',
+          },
+        ],
+        queryParams: [
+          {
+            id: 1000 + Math.floor(Math.random() * 1000),
+            key: 'name',
+            value: 'kyle',
+          },
+        ],
+      },
+    ],
     requestInProgress: false,
-    responseBody: '{}',
-    requestBody: '{}',
-
-    addNewRequest: () => {
+    addNewRequest: (requestItem) => {
+      set(O.modify(O.optic<IApplicationDataData>().path('requestTabs'))((c) => [...c, requestItem]))
+    },
+    onAddKeyPair: (keyValuePair, type, requestTabId) => {
       set(
-        O.modify(O.optic<IApplicationDataData>().path('requestTabs'))((c) => [
-          ...c,
-          { id: uuidv4(), name: 'New Request' },
-        ]),
+        O.modify(
+          O.optic<IApplicationDataData>()
+            .path('requestTabs')
+            .find((requestTab) => requestTab.id === requestTabId)
+            .path(type === 'Headers' ? 'headers' : 'queryParams'),
+        )((c) => [...c, keyValuePair]),
       )
     },
-    setResponseBody: (body) => {
-      set({ responseBody: body })
+    onRemoveKeyPair: (keyValuePair, type, requestTabId) => {
+      set(
+        O.modify(
+          O.optic<IApplicationDataData>()
+            .path('requestTabs')
+            .find((requestTab) => requestTab.id === requestTabId)
+            .path(type === 'Headers' ? 'headers' : 'queryParams'),
+        )((c) => c.filter((item) => item.id !== keyValuePair.id)),
+      )
     },
-    setRequestBody: (body) => {
-      set({ requestBody: body })
+    onUpdateKeyPair: (keyValuePair, type, requestTabId) => {
+      set(
+        O.modify(
+          O.optic<IApplicationDataData>()
+            .path('requestTabs')
+            .find((requestTab) => requestTab.id === requestTabId)
+            .path(type === 'Headers' ? 'headers' : 'queryParams')
+            .find((item) => item.id === keyValuePair.id),
+        )(() => keyValuePair),
+      )
     },
-    setHeaders: (headers: KeyValuePair[]) => set({ headers }),
-    setQueryParams: (queryParams: KeyValuePair[]) => set({ queryParams }),
-    setMethod: (method: string) => set({ method }),
-    setUrl: (url: string) => set({ url }),
+    onChangeRequestBody: (body, requestTabId) => {
+      set(
+        O.modify(
+          O.optic<IApplicationDataData>()
+            .path('requestTabs')
+            .find((requestTab) => requestTab.id === requestTabId)
+            .path('body'),
+        )(() => body),
+      )
+    },
+    onChangeRequestUrl: (url, requestTabId) => {
+      set(
+        O.modify(
+          O.optic<IApplicationDataData>()
+            .path('requestTabs')
+            .find((requestTab) => requestTab.id === requestTabId)
+            .path('url'),
+        )(() => url),
+      )
+    },
+    onChangeRequestMethod: (method, requestTabId) => {
+      set(
+        O.modify(
+          O.optic<IApplicationDataData>()
+            .path('requestTabs')
+            .find((requestTab) => requestTab.id === requestTabId)
+            .path('method'),
+        )(() => method),
+      )
+    },
+    onChangeRequestName: (name, requestTabId) => {
+      set(
+        O.modify(
+          O.optic<IApplicationDataData>()
+            .path('requestTabs')
+            .find((requestTab) => requestTab.id === requestTabId)
+            .path('name'),
+        )(() => name),
+      )
+    },
+    onChangeRequestTab: (requestTabId) => {
+      set(
+        O.modify(
+          O.optic<IApplicationDataData>()
+            .path('requestTabs')
+            .find((requestTab) => requestTab.id === requestTabId),
+        )((c) => c),
+      )
+    },
+    getRequestData: (requestTabId) => {
+      return (
+        get().requestTabs.find((requestTab) => requestTab.id === requestTabId) || {
+          id: 1000 + Math.floor(Math.random() * 1000),
+          name: 'New Request',
+          url: 'https://jsonplaceholder.typicode.com/todos/1',
+          method: 'GET',
+          body: '',
+          headers: [],
+          queryParams: [],
+        }
+      )
+    },
     setRequestInProgress: (requestInProgress: boolean) => {
       set({ requestInProgress })
     },

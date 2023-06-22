@@ -23,7 +23,7 @@ export const requestMethods = [
 ]
 
 export const getDefaultKeyValuePair = () => ({
-  id: uuidv4(),
+  id: 1,
   key: '',
   value: '',
 })
