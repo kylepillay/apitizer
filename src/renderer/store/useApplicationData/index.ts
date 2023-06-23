@@ -1,8 +1,7 @@
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
 import * as O from 'optics-ts'
-
-import { getDefaultKeyValuePair } from '../../constants/index'
+import { IResponse } from 'types'
 
 export interface KeyValuePair {
   id: number
@@ -18,6 +17,7 @@ export interface RequestTab {
   body: string
   headers: KeyValuePair[]
   queryParams: KeyValuePair[]
+  response?: IResponse
 }
 
 export interface IApplicationDataData {
@@ -45,13 +45,12 @@ export interface IApplicationDataData {
   onChangeRequestMethod: (method: string, requestTabId: number) => void
   onChangeRequestName: (name: string, requestTabId: number) => void
   onChangeRequestTab: (requestTabId: number) => void
+  onChangeResponse: (response: IResponse) => void
   getRequestData: (requestTabId: number) => RequestTab
 }
 
 export const useApplicationData = create<IApplicationDataData>()(
   devtools((set, get) => ({
-    headers: [getDefaultKeyValuePair()],
-    queryParams: [getDefaultKeyValuePair()],
     requestTabs: [
       {
         id: 1000 + Math.floor(Math.random() * 1000),
@@ -73,6 +72,18 @@ export const useApplicationData = create<IApplicationDataData>()(
             value: 'kyle',
           },
         ],
+        response: {
+          requestId: 0,
+          status: 0,
+          statusText: '',
+          ok: false,
+          redirected: false,
+          type: '',
+          url: '',
+          body: '',
+          text: '',
+          headers: {},
+        },
       },
     ],
     requestInProgress: false,
@@ -157,6 +168,16 @@ export const useApplicationData = create<IApplicationDataData>()(
             .path('requestTabs')
             .find((requestTab) => requestTab.id === requestTabId),
         )((c) => c),
+      )
+    },
+    onChangeResponse: (response) => {
+      set(
+        O.modify(
+          O.optic<IApplicationDataData>()
+            .path('requestTabs')
+            .find((requestTab) => requestTab.id === response.requestId)
+            .path('response'),
+        )(() => response),
       )
     },
     getRequestData: (requestTabId) => {

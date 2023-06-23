@@ -3,7 +3,7 @@ import React from 'react'
 function Sidebar() {
   return (
     <div className='flex w-20 flex-col border-r border-r-gray-800 bg-gray-800 text-white'>
-      <button className='flex h-16 items-center justify-center bg-gray-700 hover:bg-gray-600 focus:bg-gray-600'>
+      <button className='flex h-16 w-20 items-center justify-center bg-gray-700 hover:bg-gray-600 focus:bg-gray-600'>
         <svg
           xmlns='http://www.w3.org/2000/svg'
           className='h-8 w-8 text-white'

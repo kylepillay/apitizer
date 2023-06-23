@@ -1,15 +1,15 @@
 .tab-list {
-  @apply max-w-screen-xl mx-auto border-b flex items-center gap-x-3 overflow-x-auto text-sm;
+  @apply mx-auto flex max-w-screen-xl items-center gap-x-3 overflow-x-auto border-b text-sm;
 }
 
 .tab-trigger {
-  @apply py-2 border-b-2 border-white text-gray-50;
+  @apply border-b-2 border-white py-2 text-gray-50;
 }
 
 .tab-inner {
-  @apply py-2.5 px-4 rounded-lg duration-150 hover:text-indigo-600 hover:bg-gray-50 active:bg-gray-100 font-medium;
+  @apply px-4 py-2.5 font-medium duration-150 hover:bg-gray-50 hover:text-indigo-600 active:bg-gray-100;
 }
 
 .tab-content {
-  @apply rounded-b-lg border border-t-0 border-gray-300 p-4;
+  @apply p-4;
 }

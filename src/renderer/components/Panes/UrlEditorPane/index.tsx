@@ -56,7 +56,7 @@ export default function UrlEditor({
         </select>
         <input
           className='ml-3 w-full rounded-md border border-gray-300 px-4 py-2 hover:border-sky-700 focus:outline-sky-700'
-          value={url + queryParamsString}
+          value={url}
           onChange={onUrlChange}
         />
         <button

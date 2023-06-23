@@ -5,11 +5,11 @@ import { ThreeDots } from 'react-loader-spinner'
 import ResponseHeaderPane from '../../../components/Panes/ResponseHeaderPane'
 import CodeEditor from '../../../components/General/CodeEditor'
 import { useApplicationData } from '../../../store/useApplicationData'
-import { useResponseData } from 'renderer/store/useResponseData'
+import { IResponse } from 'types'
 
-const ResponseTabGroup = () => {
+const ResponseTabGroup = ({ response }: { response?: IResponse }) => {
   const refreshInProgress = useApplicationData((state) => state.requestInProgress)
-  const { json, headers } = useResponseData((state) => state)
+  const { body, headers } = response ? response : { body: null, headers: [] }
 
   return (
     <Tabs.Root defaultValue='response-body'>
@@ -23,7 +23,7 @@ const ResponseTabGroup = () => {
       </Tabs.List>
 
       <Tabs.Content value='response-body' className='tab-content'>
-        {refreshInProgress ? <ThreeDots /> : <CodeEditor value={json} readOnly />}
+        {refreshInProgress ? <ThreeDots /> : <CodeEditor value={body ? body : '{}'} readOnly />}
       </Tabs.Content>
       <Tabs.Content value='response-headers' className='tab-content'>
         {refreshInProgress ? null : <ResponseHeaderPane headers={headers} />}

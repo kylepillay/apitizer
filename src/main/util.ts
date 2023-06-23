@@ -1,6 +1,6 @@
 import { URL } from 'url'
 import path from 'path'
-import { KeyValuePair } from './types'
+import { KeyValuePair } from '../types'
 
 export function resolveHtmlPath(htmlFileName: string) {
   if (process.env.NODE_ENV === 'development') {

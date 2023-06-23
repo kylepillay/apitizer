@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import UrlEditor from '../../../../components/Panes/UrlEditorPane'
-import RequestTabGroup from '../../../../components/Tab-Groups/RequestTabGroup'
-import { RequestTab, useApplicationData } from '../../../../store/useApplicationData'
+import React, { useEffect, useState, useCallback } from 'react'
+import UrlEditor from 'renderer/components/Panes/UrlEditorPane'
+import RequestTabGroup from 'renderer/components/Tab-Groups/RequestTabGroup'
+import { RequestTab, useApplicationData } from 'renderer/store/useApplicationData'
 
 const RequestPanel = ({ id, method, url, headers, queryParams, body }: RequestTab) => {
-  const { onChangeRequestUrl, onChangeRequestMethod, getRequestData } = useApplicationData(
-    (state) => state,
-  )
+  const { onChangeRequestUrl, onChangeRequestMethod, getRequestData, setRequestInProgress } =
+    useApplicationData((state) => state)
 
   const [queryParamsString, setQueryParamsString] = useState('')
 
@@ -24,6 +23,11 @@ const RequestPanel = ({ id, method, url, headers, queryParams, body }: RequestTa
     setQueryParamsString(newQueryParamsString)
   }, [queryParams, setQueryParamsString])
 
+  const onSubmit = useCallback(() => {
+    window.electron.ipcRenderer.sendMessage('make-request', getRequestData(id))
+    setRequestInProgress(true)
+  }, [window.electron.ipcRenderer.sendMessage])
+
   return (
     <>
       <UrlEditor
@@ -33,10 +37,7 @@ const RequestPanel = ({ id, method, url, headers, queryParams, body }: RequestTa
         queryParamsString={queryParamsString}
         reqMethod={method}
         setReqMethod={onChangeRequestMethod}
-        onInputSend={() => {
-          console.log(getRequestData(id))
-          window.electron.ipcRenderer.sendMessage('make-request', getRequestData(id))
-        }}
+        onInputSend={onSubmit}
       />
       <RequestTabGroup body={body} queryParams={queryParams} headers={headers} requestTabId={id} />
     </>

@@ -5,14 +5,17 @@ export interface KeyValuePair {
 }
 
 export interface IRequestData {
+  id: number
   url: string
+  name: string
   method: string
   queryParams: KeyValuePair[]
   headers: KeyValuePair[]
-  data: string
+  body: string
 }
 
 export interface IResponse {
+  requestId: number
   ok?: boolean
   status?: number
   statusText?: string
@@ -20,7 +23,7 @@ export interface IResponse {
   type?: string
   url?: string
   formData?: FormData
-  json?: string
+  body?: string
   text?: string
   headers?: object
   error?: unknown

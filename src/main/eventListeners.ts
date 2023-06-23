@@ -1,7 +1,7 @@
 import { Header } from './database/entity/Header'
 import { QueryParam } from './database/entity/QueryParam'
 import { RequestItem } from './database/entity/RequestItem'
-import { IRequestData, IResponse } from './types'
+import { IRequestData, IResponse } from '../types'
 import Database from './database'
 
 export const onMakeRequest = async (event: Electron.IpcMainEvent, args: IRequestData) => {
@@ -27,7 +27,7 @@ export const onMakeRequest = async (event: Electron.IpcMainEvent, args: IRequest
     fetchResponse = await fetch(args.url, {
       method: args.method,
       headers: myHeaders,
-      ...(methodsThatAllowBody.indexOf(args.method) >= 0 && { body: JSON.parse(args.data) }),
+      ...(methodsThatAllowBody.indexOf(args.method) >= 0 && { body: JSON.parse(args.body) }),
     })
     const fetchResponseClone = fetchResponse.clone()
     const json = await fetchResponse.json()
@@ -41,18 +41,20 @@ export const onMakeRequest = async (event: Electron.IpcMainEvent, args: IRequest
     }
 
     response = {
+      requestId: args.id,
       status: fetchResponse.status,
       statusText: fetchResponse.statusText,
       ok: fetchResponse.ok,
       redirected: fetchResponse.redirected,
       type: fetchResponse.type,
       url: fetchResponse.url,
-      json: JSON.stringify(json, null, 2),
+      body: JSON.stringify(json, null, 2),
       text,
       headers,
     }
   } catch (error) {
     response = {
+      requestId: args.id,
       error,
     }
   }
@@ -94,6 +96,7 @@ export const onAddNewRequest = async (event: Electron.IpcMainEvent, args: Reques
     console.warn(error)
   }
 }
+
 export const onGetAllRequests = async (event: Electron.IpcMainEvent, args: Request) => {
   const database = new Database()
   await database.init()

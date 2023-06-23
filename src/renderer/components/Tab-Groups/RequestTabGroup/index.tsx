@@ -9,7 +9,7 @@ const StyledTabTrigger = styled(Tabs.Trigger)``
 import KeyValuePane from '../../../components/Panes/KeyValuePane/KeyValuePane'
 import JsonEditorPane from '../../../components/Panes/JsonEditorPane'
 import { useApplicationData } from '../../../store/useApplicationData'
-import { KeyValuePair } from 'main/types'
+import { KeyValuePair } from 'types'
 
 const RequestTabGroup = ({
   queryParams,

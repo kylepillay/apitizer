@@ -6,11 +6,13 @@ const ResponseHeaderPane = ({ headers }: { headers?: object }) => {
   if (headers && Object.keys(headers).length) {
     Object.entries(headers).forEach(([key, value]) => {
       responseHeaders.push({
+        id: 1000 + Math.round(Math.random() * 1000),
         key: key,
         value: value,
       })
     })
   }
+
   const renderedHeaders = responseHeaders.map(({ key, value }) => {
     return (
       <tr key={key}>
@@ -19,6 +21,7 @@ const ResponseHeaderPane = ({ headers }: { headers?: object }) => {
       </tr>
     )
   })
+
   return (
     <table className='text-left'>
       <thead>

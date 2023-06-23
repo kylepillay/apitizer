@@ -5,11 +5,11 @@ import Sidebar from './Sidebar'
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <div className='flex h-screen'>
-        <Sidebar />
-        <div className='flex flex-1 flex-col'>
-          <Navbar />
-          <main>{children}</main>
+      <div className='border-b-1 flex h-screen flex-col'>
+        <Navbar />
+        <div className='flex flex-1 flex-row'>
+          <Sidebar />
+          <main className='w-full'>{children}</main>
         </div>
       </div>
     </>

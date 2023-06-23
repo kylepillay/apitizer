@@ -14,7 +14,7 @@ const MainTabs = () => {
   return (
     <Tabs.Root defaultValue={JSON.stringify(requestTabs[0].id)}>
       <Tabs.List
-        className={clsx('flex w-full rounded-t-lg bg-white dark:bg-gray-800')}
+        className={clsx('dark:bg-gray-800, flex w-full bg-white')}
         aria-label='request-tabs'
       >
         {requestTabs.map((tab) => (
@@ -30,7 +30,7 @@ const MainTabs = () => {
         </div>
       </Tabs.List>
       {requestTabs.map((tab) => (
-        <Tabs.Content key={tab.id} value={JSON.stringify(tab.id)} className='tab-content'>
+        <Tabs.Content key={tab.id} value={JSON.stringify(tab.id)} className='p-4'>
           <RequestPanel
             id={tab.id}
             name={tab.name}
@@ -40,7 +40,7 @@ const MainTabs = () => {
             queryParams={tab.queryParams}
             headers={tab.headers}
           />
-          <ResponsePanel />
+          <ResponsePanel response={tab.response} />
         </Tabs.Content>
       ))}
     </Tabs.Root>
