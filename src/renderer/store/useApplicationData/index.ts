@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
 import * as O from 'optics-ts'
 import { IResponse } from 'types'
+import { getEmptyRequestTabObject } from 'renderer/constants'
 
 export interface KeyValuePair {
   id: number
@@ -23,7 +24,8 @@ export interface RequestTab {
 export interface IApplicationDataData {
   requestInProgress: boolean
   requestTabs: RequestTab[]
-  addNewRequest: (requestItem: RequestTab) => void
+  addNewRequest: () => void
+  removeRequestTab: (requestTabId: number) => void
   setRequestInProgress: (requestInProgress: boolean) => void
   onAddKeyPair: (
     keyValuePair: KeyValuePair,
@@ -51,44 +53,21 @@ export interface IApplicationDataData {
 
 export const useApplicationData = create<IApplicationDataData>()(
   devtools((set, get) => ({
-    requestTabs: [
-      {
-        id: 1000 + Math.floor(Math.random() * 1000),
-        name: 'New Request',
-        url: 'https://jsonplaceholder.typicode.com/todos/1',
-        method: 'GET',
-        body: '',
-        headers: [
-          {
-            id: 1000 + Math.floor(Math.random() * 1000),
-            key: 'Content-Type',
-            value: 'application/json',
-          },
-        ],
-        queryParams: [
-          {
-            id: 1000 + Math.floor(Math.random() * 1000),
-            key: 'name',
-            value: 'kyle',
-          },
-        ],
-        response: {
-          requestId: 0,
-          status: 0,
-          statusText: '',
-          ok: false,
-          redirected: false,
-          type: '',
-          url: '',
-          body: '',
-          text: '',
-          headers: {},
-        },
-      },
-    ],
+    requestTabs: [getEmptyRequestTabObject()],
     requestInProgress: false,
-    addNewRequest: (requestItem) => {
-      set(O.modify(O.optic<IApplicationDataData>().path('requestTabs'))((c) => [...c, requestItem]))
+    addNewRequest: () => {
+      set(
+        O.modify(O.optic<IApplicationDataData>().path('requestTabs'))((c) => [
+          ...c,
+          getEmptyRequestTabObject(),
+        ]),
+      )
+    },
+    removeRequestTab: (requestTabId) => {
+      const requestTab = O.optic<IApplicationDataData>()
+        .path('requestTabs')
+        .filter((requestTab) => requestTab.id === requestTabId)
+      set(O.set(requestTab)([]))
     },
     onAddKeyPair: (keyValuePair, type, requestTabId) => {
       set(

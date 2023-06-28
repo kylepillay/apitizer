@@ -62,32 +62,18 @@ export const onMakeRequest = async (event: Electron.IpcMainEvent, args: IRequest
   event.reply('make-request-response', response)
 }
 
-export const onAddNewRequest = async (event: Electron.IpcMainEvent, args: Request) => {
+export const onAddNewRequest = async (event: Electron.IpcMainEvent, args: RequestItem) => {
   try {
     const database = new Database()
     await database.init()
 
-    const queryParam = new QueryParam()
-
-    queryParam.key = 'name'
-    queryParam.value = 'kyle'
-
-    await database.insert(queryParam)
-
-    const header = new Header()
-
-    header.key = 'Accept'
-    header.value = 'application/json'
-
-    await database.insert(header)
-
     const request = new RequestItem()
-    request.url = 'https://jsonplaceholder.typicode.com/todos/1'
-    request.method = 'GET'
-    request.body = '{ "key": "value" }'
-    request.name = 'New Request'
-    request.queryParams = [queryParam]
-    request.headers = [header]
+    request.url = args.url
+    request.method = args.method
+    request.body = args.body
+    request.name = args.name
+    request.queryParams = args.queryParams
+    request.headers = args.headers
 
     const result = await database.insert(request)
 

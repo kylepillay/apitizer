@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from './Navbar'
 import Sidebar from './Sidebar'
+import NavigationPanel from './NavigationPanel'
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -9,6 +10,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <Navbar />
         <div className='flex flex-1 flex-row'>
           <Sidebar />
+          <NavigationPanel />
           <main className='w-full'>{children}</main>
         </div>
       </div>

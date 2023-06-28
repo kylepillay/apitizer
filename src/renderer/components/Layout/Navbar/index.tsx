@@ -1,7 +1,7 @@
 import React from 'react'
-import Logo from '../../General/Logo'
+import Logo from 'renderer/components/General/Logo'
 
-export default function Navbar() {
+const Navbar = () => {
   return (
     <header className='flex items-center border-b border-slate-800 bg-gray-700 px-4 py-2'>
       <div className='flex items-center'>
@@ -10,3 +10,5 @@ export default function Navbar() {
     </header>
   )
 }
+
+export default Navbar

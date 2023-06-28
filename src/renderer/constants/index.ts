@@ -22,8 +22,36 @@ export const requestMethods = [
   },
 ]
 
-export const getDefaultKeyValuePair = () => ({
-  id: 1,
-  key: '',
-  value: '',
+export const getEmptyRequestTabObject = () => ({
+  id: 1000 + Math.floor(Math.random() * 1000),
+  name: 'New Request',
+  url: 'https://jsonplaceholder.typicode.com/todos/1',
+  method: 'GET',
+  body: '',
+  headers: [
+    {
+      id: 1000 + Math.floor(Math.random() * 1000),
+      key: 'Content-Type',
+      value: 'application/json',
+    },
+  ],
+  queryParams: [
+    {
+      id: 1000 + Math.floor(Math.random() * 1000),
+      key: 'name',
+      value: 'kyle',
+    },
+  ],
+  response: {
+    requestId: 0,
+    status: 0,
+    statusText: '',
+    ok: false,
+    redirected: false,
+    type: '',
+    url: '',
+    body: '',
+    text: '',
+    headers: {},
+  },
 })
