@@ -2,7 +2,21 @@
 /* eslint no-unused-vars: off */
 import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron'
 
-export type Channels = 'make-request' | 'make-request-response'
+export type Channels =
+  | 'make-request'
+  | 'make-request-response'
+  | 'add-new-request-response'
+  | 'add-new-request'
+  | 'get-all-requests'
+  | 'get-all-requests-response'
+  | 'get-request'
+  | 'get-request-response'
+  | 'update-request'
+  | 'update-request-response'
+  | 'delete-request'
+  | 'delete-request-response'
+  | 'get-all-requests'
+  | 'get-all-requests-response'
 
 const electronHandler = {
   ipcRenderer: {

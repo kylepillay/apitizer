@@ -1,26 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import UrlEditor from '../../../../components/Panes/UrlEditorPane'
-import RequestTabGroup from '../../../../components/Tab-Groups/RequestTabGroup'
-import { useApplicationData } from '../../../../store/useApplicationData'
-import { useRequestData } from 'renderer/store/useRequestData'
+import React, { useEffect, useState, useCallback } from 'react'
+import UrlEditor from 'renderer/components/Panes/UrlEditorPane'
+import RequestTabGroup from 'renderer/components/Tab-Groups/RequestTabGroup'
+import { RequestTab, useApplicationData } from 'renderer/store/useApplicationData'
 
-const RequestPanel = () => {
-  const { method, url, queryParams, headers, requestBody, setUrl, setMethod } = useApplicationData(
-    (state) => state,
-  )
+const RequestPanel = ({ id, method, url, headers, queryParams, body }: RequestTab) => {
+  const { onChangeRequestUrl, onChangeRequestMethod, getRequestData, setRequestInProgress } =
+    useApplicationData((state) => state)
 
-  const { getRequestData, setRequestData } = useRequestData((state) => state)
   const [queryParamsString, setQueryParamsString] = useState('')
-
-  useEffect(() => {
-    setRequestData({
-      method,
-      url,
-      params: queryParams,
-      headers,
-      data: requestBody,
-    })
-  }, [method, url, queryParams, headers, requestBody])
 
   useEffect(() => {
     let newQueryParamsString = ''
@@ -36,19 +23,23 @@ const RequestPanel = () => {
     setQueryParamsString(newQueryParamsString)
   }, [queryParams, setQueryParamsString])
 
+  const onSubmit = useCallback(() => {
+    window.electron.ipcRenderer.sendMessage('make-request', getRequestData(id))
+    setRequestInProgress(true)
+  }, [window.electron.ipcRenderer.sendMessage])
+
   return (
     <>
       <UrlEditor
         url={url}
-        setUrl={setUrl}
+        setUrl={onChangeRequestUrl}
+        requestId={id}
         queryParamsString={queryParamsString}
         reqMethod={method}
-        setReqMethod={setMethod}
-        onInputSend={() => {
-          window.electron.ipcRenderer.sendMessage('make-request', getRequestData())
-        }}
+        setReqMethod={onChangeRequestMethod}
+        onInputSend={onSubmit}
       />
-      <RequestTabGroup />
+      <RequestTabGroup body={body} queryParams={queryParams} headers={headers} requestTabId={id} />
     </>
   )
 }

@@ -1,6 +1,11 @@
-import { IResponse } from 'main/types'
-import { useResponseData } from 'renderer/store/useResponseData'
+import { IResponse } from 'types'
+import { useApplicationData } from 'renderer/store/useApplicationData'
 
 export default (...args: unknown[]) => {
-  useResponseData.getState().setResponseData(args[0] as IResponse)
+  useApplicationData.getState().setRequestInProgress(false)
+  if ((args[0] as IResponse).error) {
+    console.log((args[0] as IResponse).error)
+  } else {
+    useApplicationData.getState().onChangeResponse(args[0] as IResponse)
+  }
 }

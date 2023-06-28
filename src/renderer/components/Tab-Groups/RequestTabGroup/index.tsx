@@ -9,9 +9,20 @@ const StyledTabTrigger = styled(Tabs.Trigger)``
 import KeyValuePane from '../../../components/Panes/KeyValuePane/KeyValuePane'
 import JsonEditorPane from '../../../components/Panes/JsonEditorPane'
 import { useApplicationData } from '../../../store/useApplicationData'
+import { KeyValuePair } from 'types'
 
-const RequestTabGroup = () => {
-  const { headers, queryParams, requestBody, setHeaders, setQueryParams, setRequestBody } =
+const RequestTabGroup = ({
+  queryParams,
+  headers,
+  body,
+  requestTabId,
+}: {
+  queryParams: KeyValuePair[]
+  headers: KeyValuePair[]
+  body: string
+  requestTabId: number
+}) => {
+  const { onAddKeyPair, onRemoveKeyPair, onUpdateKeyPair, onChangeRequestBody } =
     useApplicationData((state) => state)
 
   return (
@@ -28,13 +39,30 @@ const RequestTabGroup = () => {
         </Tabs.Trigger>
       </Tabs.List>
       <Tabs.Content value='query-params' className='tab-content'>
-        <KeyValuePane keyPairValueList={queryParams} onChange={setQueryParams} />
+        <KeyValuePane
+          keyPairValueList={queryParams}
+          onAdd={onAddKeyPair}
+          onUpdate={onUpdateKeyPair}
+          onRemove={onRemoveKeyPair}
+          type={'QueryParams'}
+          requestTabId={requestTabId}
+        />
       </Tabs.Content>
       <Tabs.Content value='headers' className='tab-content'>
-        <KeyValuePane keyPairValueList={headers} onChange={setHeaders} />
+        <KeyValuePane
+          keyPairValueList={headers}
+          onAdd={onAddKeyPair}
+          onUpdate={onUpdateKeyPair}
+          onRemove={onRemoveKeyPair}
+          type='Headers'
+          requestTabId={requestTabId}
+        />
       </Tabs.Content>
       <Tabs.Content value='body' className='tab-content'>
-        <JsonEditorPane value={requestBody} onChange={setRequestBody} />
+        <JsonEditorPane
+          value={body}
+          onChange={(body: string) => onChangeRequestBody(body, requestTabId)}
+        />
       </Tabs.Content>
     </Tabs.Root>
   )

@@ -1,17 +1,29 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import _ from 'lodash'
-import { KeyValuePair } from 'main/types'
+import { KeyValuePair } from '../../../store/useApplicationData'
 
 const KeyValueEditor = ({
   keyPair,
-  setKeyPair,
-  onKeyPairRemove,
+  onUpdate,
+  onRemove,
+  type,
+  requestTabId,
 }: {
   keyPair: KeyValuePair
-  setKeyPair: (keyPair: KeyValuePair) => void
-  onKeyPairRemove: (keyPair: KeyValuePair) => void
+  onUpdate: (
+    KeyValuePair: KeyValuePair,
+    type: 'Headers' | 'QueryParams',
+    requestTabId: number,
+  ) => void
+  onRemove: (
+    KeyValuePair: KeyValuePair,
+    type: 'Headers' | 'QueryParams',
+    requestTabId: number,
+  ) => void
+  type: 'Headers' | 'QueryParams'
+  requestTabId: number
 }) => {
-  const [keyValue, setKeyValue] = useState<KeyValuePair>(keyPair)
+  const [keyValue, setKeyPairValue] = useState<KeyValuePair>(keyPair)
 
   useEffect(() => {
     debouncedInput(keyValue)
@@ -19,26 +31,27 @@ const KeyValueEditor = ({
 
   const debouncedInput = useCallback(
     _.debounce((keyValue) => {
-      setKeyPair(keyValue)
-    }, 300),
-    [setKeyPair],
+      setKeyPairValue(keyValue)
+      onUpdate(keyValue, type, requestTabId)
+    }, 200),
+    [setKeyPairValue],
   )
 
   const handleOnChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      setKeyValue((prevState: KeyValuePair) => ({
+      setKeyPairValue((prevState: KeyValuePair) => ({
         ...prevState,
         id: prevState.id,
         key: e?.target?.name === 'key' ? e?.target?.value : prevState?.key,
         value: e?.target?.name === 'value' ? e?.target?.value : prevState?.value,
       }))
     },
-    [setKeyValue],
+    [setKeyPairValue],
   )
 
   const onKeyPairRemoveClick = useCallback(() => {
-    onKeyPairRemove(keyValue)
-  }, [onKeyPairRemove, keyValue])
+    onRemove(keyValue, type, requestTabId)
+  }, [onRemove, keyValue])
 
   return (
     <>
@@ -47,12 +60,14 @@ const KeyValueEditor = ({
           className='w-full rounded-md border border-gray-300 px-4 py-1.5  hover:border-sky-700 focus:outline-sky-700'
           placeholder='Key'
           name='key'
+          value={keyValue.key}
           onChange={handleOnChange}
         />
         <input
           className='ml-3 w-full rounded-md border border-gray-300 px-4 py-1.5 hover:border-sky-700 focus:outline-sky-700'
           placeholder='Value'
           name='value'
+          value={keyValue.value}
           onChange={handleOnChange}
         />
         <button

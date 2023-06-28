@@ -20,7 +20,17 @@
     "package-lock.json": true,
     "*.{css,sass,scss}.d.ts": true
   },
-  "cSpell.words": ["apitizer", "codemirror", "zustand"],
+  "cSpell.words": [
+    "apitizer",
+    "clsx",
+    "codemirror",
+    "heroicons",
+    "immer",
+    "tailwindcss",
+    "typeorm",
+    "uuidv",
+    "zustand"
+  ],
   "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
   "editor.formatOnPaste": false,
   "editor.formatOnType": false,

@@ -1,68 +1,62 @@
-import React, { useCallback } from 'react'
-import { v4 as uuidv4 } from 'uuid'
+import React from 'react'
 import KeyValueEditor from './KeyValueEditor'
-import { KeyValuePair } from '../../../store/useApplicationData'
+import { KeyValuePair } from 'renderer/store/useApplicationData'
 
-export default function KeyValuePane({
-  keyPairValueList,
-  onChange,
-}: {
+interface KeyValuePairProps {
   keyPairValueList: KeyValuePair[]
-  onChange: (keyPairValueList: KeyValuePair[]) => void
-}) {
-  const onKeyPairAdd = useCallback(() => {
-    onChange([
-      ...keyPairValueList,
-      {
-        id: uuidv4(),
-        key: '',
-        value: '',
-      },
-    ])
-  }, [onChange])
+  onAdd: (keyValuePair: KeyValuePair, type: 'Headers' | 'QueryParams', requestTabId: number) => void
+  onUpdate: (
+    KeyValuePair: KeyValuePair,
+    type: 'Headers' | 'QueryParams',
+    requestTabId: number,
+  ) => void
+  onRemove: (
+    KeyValuePair: KeyValuePair,
+    type: 'Headers' | 'QueryParams',
+    requestTabId: number,
+  ) => void
+  type: 'Headers' | 'QueryParams'
+  requestTabId: number
+}
 
-  const onKeyPairRemove = (keyPair: KeyValuePair) => {
-    let newKeyValues = [...keyPairValueList]
-
-    newKeyValues = newKeyValues.filter((x) => x.id !== keyPair.id)
-    onChange(newKeyValues)
-  }
-
-  const onKeyPairUpdate = (keyValue: KeyValuePair) => {
-    const elementIndex = keyPairValueList.findIndex(
-      (element: KeyValuePair) => element.id === keyValue.id,
-    )
-    const newKeyValues = [...keyPairValueList]
-    newKeyValues[elementIndex] = {
-      ...newKeyValues[elementIndex],
-      key: keyValue.key,
-      value: keyValue.value,
-    }
-    onChange(newKeyValues)
-  }
-
+const KeyValuePane: React.FC<KeyValuePairProps> = ({
+  keyPairValueList,
+  onAdd,
+  onUpdate,
+  onRemove,
+  type,
+  requestTabId,
+}) => {
   const renderedList = keyPairValueList.map((keyValuePair: KeyValuePair) => {
     return (
       <KeyValueEditor
+        type={type}
+        requestTabId={requestTabId}
         key={keyValuePair.id}
-        keyPair={{ id: keyValuePair.id, key: keyValuePair.key, value: keyValuePair.value }}
-        setKeyPair={(keyPairValue) => onKeyPairUpdate(keyPairValue)}
-        onKeyPairRemove={() => onKeyPairRemove(keyValuePair)}
+        keyPair={keyValuePair}
+        onUpdate={(keyValuePair) => onUpdate(keyValuePair, type, requestTabId)}
+        onRemove={(keyValuePair) => onRemove(keyValuePair, type, requestTabId)}
       />
     )
   })
 
   return (
-    <>
-      <div>
-        {renderedList}
-        <button
-          className='rounded-md border border-sky-600 px-6 py-1 text-sky-800 hover:bg-sky-200'
-          onClick={onKeyPairAdd}
-        >
-          Add
-        </button>
-      </div>
-    </>
+    <div>
+      {renderedList}
+      <button
+        className='rounded-md border border-sky-600 px-6 py-1 text-sky-800 hover:bg-sky-200'
+        onClick={() =>
+          onAdd(
+            { id: 1000 + Math.round(Math.random() * 1000), key: '', value: '' },
+            type,
+            requestTabId,
+          )
+        }
+      >
+        Add
+      </button>
+    </div>
   )
 }
+
+export default KeyValuePane

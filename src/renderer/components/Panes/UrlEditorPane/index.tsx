@@ -8,24 +8,26 @@ export default function UrlEditor({
   reqMethod,
   setReqMethod,
   onInputSend,
+  requestId,
 }: {
   url: string
   queryParamsString: string
-  setUrl: (url: string) => void
+  setUrl: (url: string, requestTabId: number) => void
   reqMethod: string
-  setReqMethod: (url: string) => void
+  setReqMethod: (method: string, requestTabId: number) => void
   onInputSend: (e: React.MouseEvent<HTMLButtonElement>) => void
+  requestId: number
 }) {
   const onRequestMethodChange = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
-      setReqMethod(e.target.value)
+      setReqMethod(e.target.value, requestId)
     },
     [setReqMethod],
   )
 
   const onUrlChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      setUrl(e.target.value)
+      setUrl(e.target.value, requestId)
     },
     [setUrl],
   )
@@ -54,7 +56,7 @@ export default function UrlEditor({
         </select>
         <input
           className='ml-3 w-full rounded-md border border-gray-300 px-4 py-2 hover:border-sky-700 focus:outline-sky-700'
-          value={url + queryParamsString}
+          value={url}
           onChange={onUrlChange}
         />
         <button

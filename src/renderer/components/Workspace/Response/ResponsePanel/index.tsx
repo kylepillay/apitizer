@@ -1,10 +1,12 @@
 import React from 'react'
 
-import ResponseTabGroup from '../../../Tab-Groups/ResponseTabGroup'
-import { useResponseData } from '../../../../store/useResponseData'
+import ResponseTabGroup from 'renderer/components/Tab-Groups/ResponseTabGroup'
+import { useApplicationData } from 'renderer/store/useApplicationData'
+import { ThreeDots } from 'react-loader-spinner'
+import { IResponse } from 'types'
 
-export default function ResponsePanel() {
-  const responseData = useResponseData((state) => state)
+export default function ResponsePanel({ response }: { response?: IResponse }) {
+  const { requestInProgress } = useApplicationData()
 
   const RenderedResponseMeta = () => {
     return (
@@ -12,13 +14,13 @@ export default function ResponsePanel() {
         <span className='w-32'>
           Status:{' '}
           <span className='text-gray-500'>
-            {responseData?.status && responseData?.status <= 0 ? '-' : responseData.status}
+            {response?.status && response?.status <= 0 ? '-' : response?.status}
           </span>
         </span>
         <span className='w-64'>
           Status Text:{' '}
           <span className='text-gray-500'>
-            {responseData.statusText ? responseData.statusText : 'No Status Text'}
+            {response?.statusText ? response.statusText : 'No Status Text'}
           </span>
         </span>
       </div>
@@ -28,8 +30,14 @@ export default function ResponsePanel() {
   return (
     <div className='my-4'>
       <span className='text-2xl font-medium'>Response</span>
-      {responseData ? <RenderedResponseMeta /> : null}
-      <ResponseTabGroup />
+      {requestInProgress ? (
+        <ThreeDots />
+      ) : (
+        <>
+          {response ? <RenderedResponseMeta /> : null}
+          <ResponseTabGroup response={response} />
+        </>
+      )}
     </div>
   )
 }

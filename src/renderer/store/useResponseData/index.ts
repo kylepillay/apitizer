@@ -1,59 +1,33 @@
 import { create } from 'zustand'
-import { IResponse } from 'main/types'
+import { IResponse } from 'types'
+import * as O from 'optics-ts'
 
-export interface IResponseDataSlice {
-  ok: boolean
-  status: number
-  statusText: string
-  redirected: boolean
-  type: string
-  url: string
-  json: string
-  text: string
-  headers: object
-  error: unknown
-  setResponseData: (response: IResponse) => void
-  getResponseData: () => IResponse
+export interface IResponseStore {
+  responses: IResponse[]
+  addNewResponse: (response: IResponse) => void
+  getResponseByRequestId: (requestId: number) => IResponse
 }
 
-export const useResponseData = create<IResponseDataSlice>((set, get) => ({
-  status: 0,
-  statusText: '',
-  headers: {},
-  json: '{}',
-  text: '',
-  ok: false,
-  redirected: false,
-  type: '',
-  url: '',
-  error: undefined,
-
-  setResponseData: (response: IResponse) => {
-    response.error
-      ? set({ error: response.error })
-      : set({
-          json: response.json,
-          text: response.text,
-          status: response.status,
-          statusText: response.statusText,
-          headers: response.headers,
-          ok: response.ok,
-          redirected: response.redirected,
-          type: response.type,
-          url: response.url,
-        })
+export const useResponseData = create<IResponseStore>((set, get) => ({
+  responses: [],
+  addNewResponse: (response: IResponse) => {
+    set(O.modify(O.optic<IResponseStore>().path('responses'))((c) => [...c, response]))
   },
-  getResponseData: () => {
-    return {
-      json: get().json,
-      text: get().text,
-      status: get().status,
-      statusText: get().statusText,
-      headers: get().headers,
-      ok: get().ok,
-      redirected: get().redirected,
-      type: get().type,
-      url: get().url,
-    }
+  getResponseByRequestId: (requestId) => {
+    return (
+      get().responses.find((response) => response.requestId === requestId) || {
+        requestId: 0,
+        status: 0,
+        statusText: '',
+        headers: {},
+        body: '{}',
+        text: '',
+        ok: false,
+        redirected: false,
+        type: '',
+        url: '',
+        error: undefined,
+      }
+    )
   },
 }))

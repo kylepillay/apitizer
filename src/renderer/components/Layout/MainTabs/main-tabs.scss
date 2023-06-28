@@ -1,0 +1,15 @@
+.tab-list {
+  @apply mx-auto flex max-w-screen-xl items-center gap-x-3 overflow-x-auto border-b text-sm;
+}
+
+.tab-trigger {
+  @apply border-b-2 border-white py-2 text-gray-50;
+}
+
+.tab-inner {
+  @apply px-4 py-2.5 font-medium duration-150 hover:bg-gray-50 hover:text-indigo-600 active:bg-gray-100;
+}
+
+.tab-content {
+  @apply p-4;
+}

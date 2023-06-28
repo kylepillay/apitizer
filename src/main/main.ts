@@ -19,8 +19,9 @@ import installExtension, {
 } from 'electron-devtools-installer'
 import MenuBuilder from './menu'
 import { resolveHtmlPath } from './util'
-import { onMakeRequest } from './eventListeners'
+import { onAddNewRequest as onAddNewRequest, onMakeRequest } from './eventListeners'
 
+export const userDataPath = app.getPath('userData')
 class AppUpdater {
   constructor() {
     log.transports.file.level = 'info'
@@ -38,6 +39,7 @@ app.whenReady().then(() => {
 })
 
 ipcMain.on('make-request', onMakeRequest)
+ipcMain.on('add-new-request', onAddNewRequest)
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support')
